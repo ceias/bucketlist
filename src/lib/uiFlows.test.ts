@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { parseBulkGoals } from './bulkGoals';
-import { agendaOnDate, upcomingAgenda, calendarItems } from './agenda';
+import { agendaOnDate, upcomingAgenda, calendarItems, monthlyAgenda } from './agenda';
 import { renamedPhoto, photoFileName } from './photos';
 import type { Item } from '../stores/data';
 const item = (patch: Partial<Item> = {}): Item => ({ id:'one',kind:'calendar',title:'A little date',date:'2027-02-13',body:'',category:'Together',amount:0,done:false,private:false,data:{},...patch });
@@ -14,7 +14,7 @@ describe('bulk goal import', () => {
     ]);
   });
   it('skips duplicates across a paste and existing goals, but keeps the same goal on another date', () => {
-    const result=parseBulkGoals('- BUY shirts\n- Buy   shirts\n2026-12-12 | Buy shirts','2026-11',[{title:'Buy shirts',date:'2026-11-01'}]);
+    const result=parseBulkGoals('- BUY shirts\n- Buy   shirts\n2026-12-12 | Buy shirts','2026-11',[{title:'Buy shirts',date:'2026-11-01',data:{datePrecision:'month'}}]);
     expect(result.rows.map(row=>row.duplicate)).toEqual([true,true,false]);
   });
   it('reports impossible dates and empty titles instead of silently shifting them', () => {
@@ -32,6 +32,26 @@ describe('calendar and agenda data', () => {
     expect(calendarItems(events).map(i=>i.id)).toEqual(['one','goal','completed','past']);
     expect(agendaOnDate(events,'2027-02-13')).toHaveLength(3);
     expect(upcomingAgenda(events,new Date(2027,0,1)).map(i=>i.id)).toEqual(['one','goal']);
+  });
+});
+describe('month-only goals',()=>{
+  it('accepts November without a year using the selected default year',()=>{
+    const parsed=parseBulkGoals('November\n- A month-long goal','2026-10');
+    expect(parsed.issues).toHaveLength(0);expect(parsed.rows).toHaveLength(1);
+    expect(parsed.rows[0]).toMatchObject({title:'A month-long goal',date:'2026-11-01',precision:'month'});
+  });
+  const flexible=item({kind:'bucket',data:{datePrecision:'month',targetMonth:'2027-02',showOnCalendar:true}});
+  it('does not pin monthly goals to any calendar day',()=>{
+    expect(calendarItems([flexible])).toHaveLength(0);expect(agendaOnDate([flexible],'2027-02-01')).toHaveLength(0);
+    expect(monthlyAgenda([flexible],'2027-02')).toEqual([flexible]);
+  });
+  it('keeps current-month goals upcoming through the whole month',()=>{
+    expect(upcomingAgenda([flexible],new Date(2027,1,20))).toEqual([flexible]);
+    expect(upcomingAgenda([flexible],new Date(2027,2,1))).toHaveLength(0);
+  });
+  it('distinguishes a month heading from an explicitly scheduled first day',()=>{
+    const parsed=parseBulkGoals('February 2027\n- A monthly goal\n2027-02-01 | An actual first-day date','2027-02');
+    expect(parsed.rows.map(row=>row.precision)).toEqual(['month','day']);
   });
 });
 describe('photo metadata', () => {
