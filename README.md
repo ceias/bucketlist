@@ -18,6 +18,12 @@ The frontend works without backend configuration in **local preview**. Records p
 
 Open Bucket List and choose “Add the editable 12-month starter plan” to import the requested November 2026–October 2027 goals. Import runs once per local preview or cloud workspace, including after goals are deleted. Starter goals are editable and removable. Financial totals begin at zero; no demonstration money is presented as actual spending.
 
+## Gmail agenda emails (test setup)
+
+Email delivery code is now available through Resend and a Supabase Edge Function. It is **not activated automatically**. Start with [docs/email-setup.md](docs/email-setup.md): apply migration 003, deploy `agenda-email`, save private credentials in Supabase, and schedule the worker. No Gmail password or local backend is required.
+
+With no sender domain, test mode delivers only to the Gmail address used for your Resend account; other destinations are skipped, never redirected. Full delivery to both partners requires a verified sender domain. Each partner opts in independently in the bell’s **Email updates** section. A confirmed account email is required. Queued email works even while the website is closed. Real delivery has not been tested against your live provider/project here.
+
 ## Login, partner invitations, and shared updates
 
 When Supabase is configured, the app now opens on a pink login page before the desktop. Sign up with a display name, or log in with an existing account. Accounts without a workspace can create one or open a partner invitation directly. Password recovery also opens on this entry screen.
@@ -32,7 +38,7 @@ Use a deployed HTTPS website for partners on different networks. A `localhost` l
 
 **Shared agenda notifications:** when an authenticated member adds shared bucket-list goals, date plans, or calendar events, the database creates a notification for the other member. Bulk inserts are summarized once per application per statement. Updates, retrying an already-inserted ID, private journals/notes, and your own additions do not produce partner alerts. History is stored in Supabase, so your partner sees unread updates on their next visit. The bell shows the unread count; clicking an update opens its app and marks it read. Realtime gives live in-app toasts, with a periodic refresh while visible as a fallback.
 
-Optional desktop notifications can be enabled from the bell panel. They are off until explicitly enabled per account/browser, require browser support and permission, and work while the website is open (including another tab). They are not closed-site Web Push, email, or SMS delivery. Those channels are not configured. The full frontend notification flow is browser-tested with simulated Supabase responses; live cross-account RLS, trigger execution, email confirmation, and Realtime delivery still need verification in your project.
+Optional desktop notifications can be enabled from the bell panel. They are off until explicitly enabled per account/browser, require browser support and permission, and work while the website is open (including another tab). They are not closed-site Web Push or SMS delivery. Email has a separate opt-in, queue and server setup described above; it is not enabled merely by granting browser notification permission. The full frontend notification flow is browser-tested with simulated Supabase responses; live cross-account RLS, trigger execution, email confirmation, and Realtime delivery still need verification in your project.
 
 ## Easier navigation and new planning tools
 
@@ -94,7 +100,7 @@ Cloud SQL/auth/storage/security behavior has **not been validated against a live
 ## Supabase Cloud setup (no local database)
 
 1. Create a Supabase Cloud project using a suitable plan. No PostgreSQL installation, Docker backend, Express, or additional database is needed.
-2. For a fresh project, run `supabase/migrations/202610310001_initial_workspace.sql` once in SQL Editor, then `supabase/migrations/202611010002_partner_welcome_and_notifications.sql` once. It creates workspaces, memberships, hashed expiring invitations, records, RLS, functions, and the private `memories` storage bucket. Keep the database administrator/service-role key out of the frontend.
+2. For a fresh project, run `supabase/migrations/202610310001_initial_workspace.sql` once in SQL Editor, then `supabase/migrations/202611010002_partner_welcome_and_notifications.sql` once. For email alerts, also follow the separate migration 003 and deployment instructions in `docs/email-setup.md`. It creates workspaces, memberships, hashed expiring invitations, records, RLS, functions, and the private `memories` storage bucket. Keep the database administrator/service-role key out of the frontend.
 3. In Authentication, enable email/password sign-in. Choose whether to require email confirmation. Set Site URL to your frontend origin and add your development and production origins to the permitted redirect URLs. Password recovery returns to `/?recovery=true`.
 4. In Project Settings → API / API Keys, obtain the project URL and public **publishable key** (not the service-role or secret key). Copy `.env.example` to `.env.local` and populate:
 

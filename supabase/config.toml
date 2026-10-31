@@ -1,0 +1,4 @@
+# This worker authenticates a private, random bearer secret before doing any work.
+# It does not accept an arbitrary recipient or message from callers.
+[functions.agenda-email]
+verify_jwt = false

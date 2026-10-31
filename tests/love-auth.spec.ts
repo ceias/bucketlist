@@ -69,3 +69,17 @@ test('opening an invitation from an existing workspace asks for the partner acco
   await page.getByRole('button',{name:'Use another account',exact:true}).click();
   await expect(page.getByLabel('Email address',{exact:true})).toBeVisible();
 });
+
+test('email opt-in belongs to the signed-in account and can be turned off',async({page})=>{
+  await mockSharedAccount(page,{signedIn:true,member:true});await page.goto('/');
+  await page.getByRole('button',{name:'Enter our little world',exact:true}).click();
+  await page.getByRole('button',{name:'Notification center',exact:true}).click();
+  const email=page.getByRole('region',{name:'Email notifications'});
+  await expect(email.getByText('gio@example.com',{exact:true})).toBeVisible();
+  await email.getByRole('button',{name:'Enable email alerts',exact:true}).click();
+  await expect(email.getByRole('status')).toHaveText('Your email preference is saved.');
+  await expect(email.getByText('Email delivery isn’t connected yet.',{exact:false})).toBeVisible();
+  expect(await page.evaluate(()=>(window as any).__loveTest.emailEnabled)).toBe(true);
+  await email.getByRole('button',{name:'Turn off email alerts',exact:true}).click();
+  expect(await page.evaluate(()=>(window as any).__loveTest.emailEnabled)).toBe(false);
+});
