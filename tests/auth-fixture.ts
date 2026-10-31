@@ -19,8 +19,9 @@ if(table==='workspace_members')data=state.member?[{workspace_id:'our-workspace'}
 if(table==='notifications'){if(patch)for(const n of state.notices)if(filters.every(([key,value])=>n[key]===value))Object.assign(n,patch);data=state.notices.filter(n=>filters.every(([key,value])=>n[key]===value));}
 return Promise.resolve({data,error:null}).then(resolve,reject)}};return query;},
 rpc:async(name,args)=>{if(name==='preview_partner_invitation')return state.expired?{data:null,error:{message:'This invitation has expired or was already accepted.'}}:{data:{inviter_name:'Brisias',workspace_name:'Our Little Corner',partner_name:'Gio',welcome_title:state.title,welcome_message:state.message,expires_at:'2027-12-31T00:00:00Z'},error:null};
-if(name==='get_agenda_email_preference')return {data:{enabled:!!state.emailEnabled,delivery_ready:!!state.emailReady},error:null};
-if(name==='set_agenda_email_preference'){state.emailEnabled=args.email_enabled;return {data:{enabled:state.emailEnabled,delivery_ready:!!state.emailReady},error:null}};
+if(name==='get_agenda_email_preference')return {data:{enabled:!!state.emailEnabled,self_confirmations:!!state.selfConfirmations,delivery_ready:!!state.emailReady},error:null};
+if(name==='set_agenda_self_confirmation'){state.selfConfirmations=args.email_enabled;return {data:{enabled:!!state.emailEnabled,self_confirmations:state.selfConfirmations,delivery_ready:!!state.emailReady},error:null}};
+if(name==='set_agenda_email_preference'){state.emailEnabled=args.email_enabled;return {data:{enabled:state.emailEnabled,self_confirmations:!!state.selfConfirmations,delivery_ready:!!state.emailReady},error:null}};
 if(name==='create_workspace'){state.member=true;return {data:'our-workspace',error:null}};
 if(name==='create_partner_invitation')return {data:'${inviteCode}',error:null};
 if(name==='accept_partner_invitation'){state.member=true;state.accepted++;Object.assign(state.session.user.user_metadata,{welcome_title:state.title,welcome_message:state.message});return {data:{workspace_id:'our-workspace',metadata:state.session.user.user_metadata},error:null}};

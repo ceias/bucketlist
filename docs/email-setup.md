@@ -6,6 +6,19 @@ This feature sends transactional email to the address on each opted-in Supabase 
 
 Code/tests are prepared here, but no Edge Function, schedule, API key, or live email has been configured in your project automatically.
 
+## Add confirmations for your own agendas (existing email setup)
+
+If migration 003, the Edge Function and the email schedule are already working:
+
+1. Open [migration 004 on GitHub](https://github.com/ceias/bucketlist/blob/main/supabase/migrations/202611010004_own_agenda_confirmations.sql), choose **Raw**, and copy the complete SQL.
+2. In Supabase → **SQL Editor** → **New query**, paste it and click **Run** once. Do not rerun migrations 001–003 or the schedule script. No new secrets or Edge Function deployment are needed.
+3. After the updated frontend deploys on Vercel, refresh the website. Open the bell → **Email updates**, enable email alerts, then check **Also email me when I add new agendas**.
+4. Add a new shared bucket-list goal, date plan, or calendar event. A bulk import sends one summary per application. Allow a minute or two for the scheduled worker, then check your inbox and spam folder.
+
+Confirmations use your currently confirmed **website login email**, with a subject such as “You added 5 new agendas ♡”. In test mode this email must also match your Resend account email and `EMAIL_TEST_RECIPIENT`; this update does not bypass that restriction. Existing agendas are not backfilled. Turning off the checkbox stops unsent own-confirmation jobs; turning off all email alerts stops both types. This option does not create extra notifications about yourself in the bell.
+
+The new migration keeps the existing worker RPC signatures, so the deployed worker and single existing schedule continue processing both partner alerts and own confirmations. The migration has syntax-parser validation; execution against your Cloud database must be verified there.
+
 ## 1. Update the project and apply migration 003
 
 In your cloned `bucketlist` folder, pull the update. Your Vercel Git integration will deploy the frontend automatically.
@@ -87,7 +100,7 @@ Wait about a minute. The bell’s Email updates section should stop saying deliv
 6. Check the recipient’s Gmail inbox, including Spam/Promotions.
 7. In Supabase Table Editor, inspect `agenda_email_jobs`: success has `status = sent`, a provider message ID and a sent timestamp. Also check Resend’s delivery dashboard. Provider acceptance alone is not proof of inbox delivery.
 
-Only **new** notifications after opting in are queued. Old agendas are not emailed retroactively. Your own changes do not email you. Private journals and notes do not produce email jobs. A bulk paste uses the notification system’s combined summary, so it does not send one email per goal. No private record bodies, agenda titles, invitation codes or credentials are included in the email.
+Only **new** additions after opting in are queued. Old agendas are not emailed retroactively. Your own additions email you only after applying migration 004 and explicitly enabling the own-confirmation checkbox above. Private journals and notes do not produce email jobs. A bulk paste uses the notification system’s combined summary, so it does not send one email per goal. No private record bodies, agenda titles, invitation codes or credentials are included in the email.
 
 ## Retries and troubleshooting
 

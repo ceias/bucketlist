@@ -22,7 +22,7 @@ Open Bucket List and choose “Add the editable 12-month starter plan” to impo
 
 Email delivery code is now available through Resend and a Supabase Edge Function. It is **not activated automatically**. Start with [docs/email-setup.md](docs/email-setup.md): apply migration 003, deploy `agenda-email`, save private credentials in Supabase, and schedule the worker. No Gmail password or local backend is required.
 
-With no sender domain, test mode delivers only to the Gmail address used for your Resend account; other destinations are skipped, never redirected. Full delivery to both partners requires a verified sender domain. Each partner opts in independently in the bell’s **Email updates** section. A confirmed account email is required. Queued email works even while the website is closed. Real delivery has not been tested against your live provider/project here.
+With no sender domain, test mode delivers only to the Gmail address used for your Resend account; other destinations are skipped, never redirected. Full delivery to both partners requires a verified sender domain. Each partner opts in independently in the bell’s **Email updates** section. Migration 004 adds an optional **Also email me when I add new agendas** checkbox, sending confirmations to that account’s confirmed login email using the existing worker and schedule. See the first section of the setup guide for this upgrade. A confirmed account email is required. Queued email works even while the website is closed. Real delivery has not been tested against your live provider/project here.
 
 ## Login, partner invitations, and shared updates
 

@@ -80,6 +80,10 @@ test('email opt-in belongs to the signed-in account and can be turned off',async
   await expect(email.getByRole('status')).toHaveText('Your email preference is saved.');
   await expect(email.getByText('Email delivery isn’t connected yet.',{exact:false})).toBeVisible();
   expect(await page.evaluate(()=>(window as any).__loveTest.emailEnabled)).toBe(true);
+  await email.getByRole('checkbox',{name:'Email my own new agendas',exact:true}).check();
+  expect(await page.evaluate(()=>(window as any).__loveTest.selfConfirmations)).toBe(true);
+  await email.getByRole('checkbox',{name:'Email my own new agendas',exact:true}).uncheck();
+  expect(await page.evaluate(()=>(window as any).__loveTest.selfConfirmations)).toBe(false);
   await email.getByRole('button',{name:'Turn off email alerts',exact:true}).click();
   expect(await page.evaluate(()=>(window as any).__loveTest.emailEnabled)).toBe(false);
 });
