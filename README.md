@@ -18,6 +18,22 @@ The frontend works without backend configuration in **local preview**. Records p
 
 Open Bucket List and choose “Add the editable 12-month starter plan” to import the requested November 2026–October 2027 goals. Import runs once per local preview or cloud workspace, including after goals are deleted. Starter goals are editable and removable. Financial totals begin at zero; no demonstration money is presented as actual spending.
 
+## Login, partner invitations, and shared updates
+
+When Supabase is configured, the app now opens on a pink login page before the desktop. Sign up with a display name, or log in with an existing account. Accounts without a workspace can create one or open a partner invitation directly. Password recovery also opens on this entry screen.
+
+Gio’s welcome uses the exact message written for him, beginning “Welcome home, my baby! ♡” and ending “I love you, Gio. Always and in all ways. ♡”. Other accounts get their own named welcome. The greeting can be customized when creating an invitation and is saved to the invited user’s metadata after acceptance.
+
+**Upgrade an existing Supabase project:** run only `supabase/migrations/202611010002_partner_welcome_and_notifications.sql` once in Supabase’s SQL Editor. Do not rerun the original migration. The new script adds personalized invitations, a notification table with recipient-only RLS, a server-side notification trigger, and Realtime publication entries. It is transactional. If it errors, stop and diagnose the error rather than rerunning the initial schema. The migration has been checked with PostgreSQL and PL/pgSQL syntax parsers, but has not been executed against your live project here.
+
+To invite your partner, use **Invite my other half** on the welcome page or the **Invite** heart in the top bar. Enter the name and welcome message, generate the link, and share it privately. The link opens a “Partner Request” screen. Your partner signs in or creates their own account, then explicitly accepts. Invitation URLs carry a private bearer code; do not publish them. They expire after 48 hours, work once, and are replaced when you generate a new link. The backend continues to enforce the two-member maximum. Expired links cannot be accepted.
+
+Use a deployed HTTPS website for partners on different networks. A `localhost` link opens only on the computer that generated it. A Vite LAN address works only while the development server is running and both devices can reach it. Add the actual frontend origin and `/**` redirect pattern to Supabase Authentication’s redirect allowlist; use that production origin as Site URL when deploying. Invitation state is preserved for the email-confirmation round trip in the same browser/origin. If confirmation opens on a different device, reopen the original invitation link there after signing in.
+
+**Shared agenda notifications:** when an authenticated member adds shared bucket-list goals, date plans, or calendar events, the database creates a notification for the other member. Bulk inserts are summarized once per application per statement. Updates, retrying an already-inserted ID, private journals/notes, and your own additions do not produce partner alerts. History is stored in Supabase, so your partner sees unread updates on their next visit. The bell shows the unread count; clicking an update opens its app and marks it read. Realtime gives live in-app toasts, with a periodic refresh while visible as a fallback.
+
+Optional desktop notifications can be enabled from the bell panel. They are off until explicitly enabled per account/browser, require browser support and permission, and work while the website is open (including another tab). They are not closed-site Web Push, email, or SMS delivery. Those channels are not configured. The full frontend notification flow is browser-tested with simulated Supabase responses; live cross-account RLS, trigger execution, email confirmation, and Realtime delivery still need verification in your project.
+
 ## Easier navigation and new planning tools
 
 - **Navigation:** all apps are grouped in the left sidebar. Use **Apps** or **Ctrl/Cmd + K** to search for an app. The top **Agenda** button opens your schedule from any application. **Desktop** minimizes the open windows; the taskbar restores them. Shortcuts open with one click.
@@ -64,7 +80,7 @@ This is an initial implementation, not the complete 27-section specification. St
 
 - Specialized normalized tables replacing the flexible `records` foundation, and dedicated forms/relationships for each domain.
 - Recurring events, event time/location/attachments, event deletion controls in the calendar, linked goal/event IDs and drag-based itinerary ordering.
-- Rearrangeable home widgets, a global content search, persistent notifications and recent-app history.
+- Rearrangeable home widgets, a global content search, recent-app history, notification preferences beyond desktop-alert opt-in, and closed-site push delivery.
 - Journal stickers/photo placement, moods/tags, richer categories, recovery of unsent edits after network failures.
 - Custom album creation/renaming/deletion, photo relationship links, date/location organization, private individual media and storage cleanup on permanent deletion. Current gallery photos are shared with both workspace members. Permanent record deletion does not remove its storage object.
 - Savings targets/budget settings, partner-specific finance dashboards, expanded finance filters and validated separate contribution/transaction models.
@@ -78,7 +94,7 @@ Cloud SQL/auth/storage/security behavior has **not been validated against a live
 ## Supabase Cloud setup (no local database)
 
 1. Create a Supabase Cloud project using a suitable plan. No PostgreSQL installation, Docker backend, Express, or additional database is needed.
-2. In SQL Editor, run `supabase/migrations/202610310001_initial_workspace.sql` once. It creates workspaces, memberships, hashed expiring invitations, records, RLS, functions, and the private `memories` storage bucket. Keep the database administrator/service-role key out of the frontend.
+2. For a fresh project, run `supabase/migrations/202610310001_initial_workspace.sql` once in SQL Editor, then `supabase/migrations/202611010002_partner_welcome_and_notifications.sql` once. It creates workspaces, memberships, hashed expiring invitations, records, RLS, functions, and the private `memories` storage bucket. Keep the database administrator/service-role key out of the frontend.
 3. In Authentication, enable email/password sign-in. Choose whether to require email confirmation. Set Site URL to your frontend origin and add your development and production origins to the permitted redirect URLs. Password recovery returns to `/?recovery=true`.
 4. In Project Settings → API / API Keys, obtain the project URL and public **publishable key** (not the service-role or secret key). Copy `.env.example` to `.env.local` and populate:
 
@@ -88,9 +104,9 @@ Cloud SQL/auth/storage/security behavior has **not been validated against a live
    ```
 
    These two values are intentionally public frontend configuration. Never put privileged keys in a `VITE_` variable. Real values are not included in this repository.
-5. Restart Vite. Open Settings, sign up, confirm your email if enabled, then log in. Create a workspace. Generate an invitation and share its code privately with your partner. The second account can join using that code. Invites expire after 48 hours, are single-use, and creating a new code invalidates the old one.
+5. Restart Vite. The login page opens first. Sign up, confirm your email if enabled, then log in. Create a workspace and use “Invite my other half” to generate a private link. The second account signs in and accepts on the invitation page. Invites expire after 48 hours, are single-use, and creating a new code invalidates the old one.
 6. Backend functions serialize membership changes, enforce one workspace per account and at most two members. No direct client write policies exist for memberships or invitations. Private text records are readable only by their owner. Shared records can be edited/deleted by either partner; ownership cannot be reassigned.
-7. Enable Realtime for `public.records` in Supabase’s replication settings if you want live refresh between partners. The frontend subscribes to the current workspace. Ordinary reads and writes work without Realtime.
+7. The second migration adds `public.records` and `public.notifications` to the `supabase_realtime` publication when it exists. Verify both are enabled in Supabase’s replication settings if you want live refresh and alerts between partners. The frontend subscribes to the current workspace. Ordinary reads and writes work without Realtime.
 8. Storage objects use `workspace-id/user-id/object-id.ext` paths. The private bucket accepts JPEG, PNG and WebP up to 8 MB. Both workspace members may read shared photos through expiring signed URLs; upload/delete policies require the uploader’s user ID in the path. Text-only private journals do not use shared gallery storage.
 
 Local preview data is not automatically uploaded or merged when signing in. Export it before switching if you want a copy. Browser settings and window layouts currently stay local.
@@ -116,7 +132,7 @@ npx playwright test   # separate terminal; browser flows against that server
 
 The Playwright config uses `/usr/bin/chromium`, which exists in this cloud environment. On another machine, install a Playwright browser with `npx playwright install chromium` and remove `executablePath` from `playwright.config.ts` or point it to your system Chromium. Browser downloads may require allowing `cdn.playwright.dev`; this environment used its existing verified system browser instead. Playwright does not start the server automatically.
 
-Browser tests cover note create/read/persistence/delete/restore, event creation, window controls, mobile navigation, bulk import/deduplication, agenda editing, notebook pages/sticky notes, photo metadata and download names, journal autosave persistence, and savings totals. Unit checks cover anniversary boundaries, window placement, the twelve-month seed plan, import parsing/validation, agenda inclusion and safe photo renaming. They do not validate Supabase RLS or the full requested feature set.
+Browser tests cover note create/read/persistence/delete/restore, event creation, window controls, mobile navigation, bulk import/deduplication, agenda editing, notebook pages/sticky notes, photo metadata and download names, journal autosave persistence, and savings totals. Unit checks cover anniversary boundaries, window placement, the twelve-month seed plan, import parsing/validation, agenda inclusion and safe photo renaming. Login/invitation/personal-welcome and notification browser tests use simulated Supabase responses. They do not validate live Supabase RLS, database triggers, real email delivery, or the full requested feature set.
 
 ## Vercel deployment
 
