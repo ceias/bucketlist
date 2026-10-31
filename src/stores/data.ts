@@ -1,4 +1,5 @@
 import { createId } from '../lib/id';
+import { writeCloudRecords } from '../lib/recordWrites';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { supabase } from '../lib/supabase';
@@ -10,8 +11,8 @@ type State={items:Item[];workspace:string|null;user:string|null;loading:boolean;
 let localItems:Item[]=[];
 let connectionEpoch=0;
 export const useData=create<State>()(persist((set,get)=>({items:[],workspace:null,user:null,loading:false,error:null,mode:'local',clearError:()=>set({error:null}),
- save:async(item)=>{try{const s=get();const row={...item,id:'id' in item?item.id:createId()};if(s.mode==='cloud'&&supabase){const {error}=await supabase.from('records').upsert({...row,workspace_id:s.workspace,owner_id:row.owner_id||s.user});if(error)throw error;}set(current=>({items:[...current.items.filter(i=>i.id!==row.id),row]}));}catch(e){set({error:(e as Error).message});throw e;}},
- saveMany:async(rows)=>{if(!rows.length)return;try{const s=get();if(s.mode==='cloud'&&supabase){const {error}=await withRequestDeadline(signal=>supabase!.from('records').upsert(rows.map(row=>({...row,workspace_id:s.workspace,owner_id:row.owner_id||s.user}))).abortSignal(signal));if(error)throw error;}const ids=new Set(rows.map(row=>row.id));set(current=>({items:[...current.items.filter(i=>!ids.has(i.id)),...rows]}));}catch(e){set({error:(e as Error).message});throw e;}},
+ save:async(item)=>{try{const s=get();const row={...item,id:'id' in item?item.id:createId()};if(s.mode==='cloud'&&supabase){await writeCloudRecords(supabase,[row],new Set(s.items.map(i=>i.id)),s.workspace!,s.user!);}set(current=>({items:[...current.items.filter(i=>i.id!==row.id),row]}));}catch(e){set({error:(e as Error).message});throw e;}},
+ saveMany:async(rows)=>{if(!rows.length)return;try{const s=get();if(s.mode==='cloud'&&supabase){await writeCloudRecords(supabase,rows,new Set(s.items.map(i=>i.id)),s.workspace!,s.user!);}const ids=new Set(rows.map(row=>row.id));set(current=>({items:[...current.items.filter(i=>!ids.has(i.id)),...rows]}));}catch(e){set({error:(e as Error).message});throw e;}},
  remove:async(id)=>{const item=get().items.find(i=>i.id===id);if(item)await get().save({...item,deleted:true})},
  restore:async(id)=>{const item=get().items.find(i=>i.id===id);if(item)await get().save({...item,deleted:false})},
  purge:async(id)=>{if(get().mode==='cloud'&&supabase){const {error}=await withRequestDeadline(signal=>supabase!.from('records').delete().eq('id',id).abortSignal(signal));if(error){set({error:error.message});throw new Error(error.message);}}set(s=>({items:s.items.filter(i=>i.id!==id)}))},

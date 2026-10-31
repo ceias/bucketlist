@@ -24,6 +24,8 @@ Email delivery code is now available through Resend and a Supabase Edge Function
 
 With no sender domain, test mode delivers only to the Gmail address used for your Resend account; other destinations are skipped, never redirected. Full delivery to both partners requires a verified sender domain. Each partner opts in independently in the bell’s **Email updates** section. Migration 004 adds an optional **Also email me when I add new agendas** checkbox, sending confirmations to that account’s confirmed login email using the existing worker and schedule. See the first section of the setup guide for this upgrade. A confirmed account email is required. Queued email works even while the website is closed. Real delivery has not been tested against your live provider/project here.
 
+Shared record edits use UPDATE rather than UPSERT, so either partner can favorite, edit, trash and restore shared photos or agendas while the original ownership and insert restrictions remain intact. No SQL policy changes are needed for this fix.
+
 For partners who accidentally created separate solo workspaces, see the [administrator merge guide](docs/merge-workspaces.md). It preserves existing records and photo paths without disabling normal app access controls.
 
 ## Login, partner invitations, and shared updates

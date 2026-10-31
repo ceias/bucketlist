@@ -87,3 +87,30 @@ test('email opt-in belongs to the signed-in account and can be turned off',async
   await email.getByRole('button',{name:'Turn off email alerts',exact:true}).click();
   expect(await page.evaluate(()=>(window as any).__loveTest.emailEnabled)).toBe(false);
 });
+
+
+test('a partner photo can be favorited, renamed, trashed and restored without changing its owner',async({page})=>{
+  await mockSharedAccount(page,{signedIn:true,member:true});
+  await page.addInitScript(()=>{(window as any).__loveTest.records=[{id:'partner-photo',workspace_id:'our-workspace',owner_id:'other-partner',kind:'gallery',title:'Ramen Date',body:'',date:'2026-11-01',category:'Little Moments',amount:0,done:false,private:false,deleted:false,data:{path:'old-space/other-partner/photo.jpg',fileName:'Ramen Date.jpg',mimeType:'image/jpeg'}}]});
+  await page.goto('/?app=gallery');
+  // Dismiss the personal welcome if this is the account's first visit.
+  const enter=page.getByRole('button',{name:'Enter our little world',exact:false});
+  if(await enter.isVisible())await enter.click();
+  await expect(page.getByRole('button',{name:'Favorite Ramen Date',exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Favorite Ramen Date',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Favorite Ramen Date',exact:true})).toHaveAttribute('aria-pressed','true');
+  await page.getByRole('button',{name:'Edit Ramen Date',exact:true}).click();
+  await page.getByLabel('Photo file name').fill('Our Ramen Date.jpg');
+  await page.getByRole('button',{name:'Save changes',exact:true}).click();
+  await expect(page.getByText('Memory updated',{exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Close photo details',exact:true}).click();
+  const record=await page.evaluate(()=>(window as any).__loveTest.records[0]);
+  expect(record.owner_id).toBe('other-partner');expect(record.data.path).toBe('old-space/other-partner/photo.jpg');
+  await page.getByRole('button',{name:'Delete Our Ramen Date',exact:true}).click();
+  await expect(page.getByRole('button',{name:'View Our Ramen Date',exact:true})).toHaveCount(0);
+  expect(await page.evaluate(()=>(window as any).__loveTest.records[0].deleted)).toBe(true);
+  await page.getByRole('button',{name:'Trash',exact:true}).click();
+  await page.getByRole('button',{name:'Restore',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Restore',exact:true})).toHaveCount(0);
+  expect(await page.evaluate(()=>(window as any).__loveTest.records[0].deleted)).toBe(false);
+});
