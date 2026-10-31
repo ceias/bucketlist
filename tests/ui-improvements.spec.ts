@@ -72,3 +72,30 @@ test('selecting a widget day creates a plan and opens that month in the full cal
   await expect(page.locator('.fc-toolbar-title')).toHaveText(format(target,'MMMM yyyy'));
   await expect(page.locator('.fc-event-title').filter({hasText:'Tomorrow, just us'})).toBeVisible();
 });
+
+test('a hanging bulk save times out, keeps the paste, and retries with the same IDs',async({page})=>{
+  let storeUrl='';page.on('response',response=>{if(response.url().includes('/src/stores/data.ts'))storeUrl=response.url();});
+  await page.clock.install();await page.goto('/?app=bucket');
+  await expect(page.getByRole('button',{name:'Paste agendas',exact:true})).toBeVisible();
+  await page.evaluate(async(storeUrl)=>{
+    const {useData}=await import(storeUrl);
+    const {withRequestDeadline}=await import('/src/lib/requestDeadline.ts');
+    const save=useData.getState().saveMany;let attempts=0;let ids:string[]=[];
+    useData.setState({mode:'cloud',saveMany:async(rows: import('../src/stores/data').Item[])=>{
+      if(attempts++===0){ids=rows.map(row=>row.id);await withRequestDeadline(()=>new Promise(()=>{}));}
+      else{(window as any).__sameImportIds=JSON.stringify(ids)===JSON.stringify(rows.map(row=>row.id));useData.setState({mode:'local'});await save(rows);}
+    }});
+  },storeUrl);
+  await page.getByRole('button',{name:'Paste agendas',exact:true}).click();
+  const dialog=page.getByRole('dialog',{name:'Paste your agendas'});
+  await dialog.getByLabel('Agendas to import').fill('A little weekend adventure');
+  await dialog.getByRole('button',{name:'Import 1 goal',exact:true}).click();
+  await expect(dialog.getByRole('button',{name:'Saving…',exact:true})).toBeDisabled();
+  await page.clock.fastForward(16_000);
+  await expect(dialog.getByRole('alert')).toContainText('Supabase did not respond within 15 seconds');
+  await expect(dialog.getByLabel('Agendas to import')).toHaveValue('A little weekend adventure');
+  await expect(page.getByRole('heading',{name:'A little weekend adventure',exact:true})).toHaveCount(0);
+  await dialog.getByRole('button',{name:'Import 1 goal',exact:true}).click();
+  await expect(dialog).toHaveCount(0);await expect(page.getByRole('heading',{name:'A little weekend adventure',exact:true})).toHaveCount(1);
+  expect(await page.evaluate(()=>(window as any).__sameImportIds)).toBe(true);
+});
