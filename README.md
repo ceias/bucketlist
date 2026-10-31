@@ -16,16 +16,39 @@ The frontend works without backend configuration in **local preview**. Records p
 
 Open Bucket List and choose “Add the editable 12-month starter plan” to import the requested November 2026–October 2027 goals. Import runs once per local preview or cloud workspace, including after goals are deleted. Starter goals are editable and removable. Financial totals begin at zero; no demonstration money is presented as actual spending.
 
+## Easier navigation and new planning tools
+
+- **Navigation:** all apps are grouped in the left sidebar. Use **Apps** or **Ctrl/Cmd + K** to search for an app. The top **Agenda** button opens your schedule from any application. **Desktop** minimizes the open windows; the taskbar restores them. Shortcuts open with one click.
+- **Calendar widgets:** Home and the desktop include an interactive month calendar and agenda. Click a day to see its plans, switch to **Coming up**, click a plan to edit it, or choose **Add a plan**. The arrow opens the full calendar at the selected date.
+- **Bulk bucket-list import:** choose **Paste agendas** in Bucket List. Paste one goal per line, optionally under month headings. Review the automatically grouped list before importing. Matching title/date duplicates are skipped, and invalid dates are flagged. Imports are limited to 200 new goals at a time. The optional calendar checkbox makes these goals appear directly in your calendar and agenda; change it later in the goal editor.
+
+  Example:
+
+  ```text
+  November 2026 — Matching Era
+  - Buy matching shirts
+  - Choose coordinated colors
+
+  December 2026 — BGC Food Crawl
+  2026-12-12 | Go Bento lunch | Food | Try something new together
+  2026-12-12 | A photobooth stop | Memories
+  ```
+
+  Month-only entries use the first day of that month. An unheaded list uses the selected default month. Dates use `YYYY-MM-DD`; this deterministic parser does not guess ambiguous natural-language dates. The review screen is editable through the pasted text. The import is saved in a single batch, and a retry reuses its record IDs.
+- **Notebook journal:** month tabs along the page edge organize entries by month and year. Use **Previous/Next** to turn pages, **This month** to return to the current chapter, and **New page** to start writing. Rich text autosaves; date/title/private changes and sticky-note highlights save when edited (sticky notes save when leaving their text field). Pending text saves before switching pages. Page-turn effects respect reduced motion.
+- **Photo details:** click a photo or **Details** to edit its file name, notes, and album, then choose **Save changes**. The new name is used in the gallery and downloaded file; the original image format and stored image remain intact. Search includes names and photo notes. Existing uploaded photos work with the new editor.
+- **Stationery and effects:** custom SVG pressed flowers, a love letter and a postage stamp, spiral binding, washi tape, hover effects, completion feedback and page turns. Dialogs support keyboard focus trapping and Escape. Reduced motion is respected.
+
 ## Current implementation
 
-- Desktop, dock, launcher search, clock, taskbar, reminders, and 13 app destinations.
+- Desktop, grouped app dock, launcher search, clock, taskbar, reminders, interactive agenda widgets, and 13 app destinations.
 - Zustand window management: drag, resize, focus, minimize, maximize, restore, close, and persisted layout. Mobile uses full-screen windows and the app launcher.
 - Home derives upcoming plans, goal completion, savings, and journal summaries from accessible records. The desk illustration is CSS, not a clickable raster mockup.
 - FullCalendar month/week/day/agenda views, event creation/editing and drag rescheduling. Date plans also appear in the calendar. Anniversary is February 13; the first is in 2027.
 - CRUD collections with search and completion filters for goals, date plans, outfits, notes, wishlist, and anniversary letters. Date itineraries are currently multiline text. Outfit plans use a date, budget and notes.
-- Tiptap rich-text journal with debounced autosave, entry search, and private entry flags.
+- Tiptap rich-text notebook journal with month/year tabs, page turns, sticky highlights, debounced autosave, entry search, and private entry flags.
 - Finance transactions, month filter, actual recorded expense totals, spending chart, individual savings contribution records and combined total, CSV export.
-- Photos: validated upload, fixed album categories, editable captions, favorites, viewer, download, soft deletion and restoration.
+- Photos: validated upload, album navigation, editable file names and notes, search, favorites, viewer, renamed downloads, soft deletion and restoration.
 - Settings: three themes, wallpaper, reduced animation, font preference, JSON data export.
 - Supabase client adapter, authentication forms including password reset, workspace creation/pairing, and scoped Realtime refresh. Cloud records use the migration’s policies; account sessions are managed by Supabase.
 
@@ -37,7 +60,7 @@ This is an initial implementation, not the complete 27-section specification. St
 - Recurring events, event time/location/attachments, event deletion controls in the calendar, linked goal/event IDs and drag-based itinerary ordering.
 - Rearrangeable home widgets, a global content search, persistent notifications and recent-app history.
 - Journal stickers/photo placement, moods/tags, richer categories, recovery of unsent edits after network failures.
-- Custom gallery album CRUD, photo relationship links, album organization, private individual media and storage cleanup on permanent deletion. Current gallery photos are shared with both workspace members. Permanent record deletion does not remove its storage object.
+- Custom album creation/renaming/deletion, photo relationship links, date/location organization, private individual media and storage cleanup on permanent deletion. Current gallery photos are shared with both workspace members. Permanent record deletion does not remove its storage object.
 - Savings targets/budget settings, partner-specific finance dashboards, expanded finance filters and validated separate contribution/transaction models.
 - Clothing photos, palettes, purchase workflow, automatic next-month outfit reminders.
 - Secure scheduled letter unlock, time capsules, video messages, annual 13-reason collections and timeline. Vault letters in this version are available immediately to authorized readers.
@@ -87,7 +110,7 @@ npx playwright test   # separate terminal; browser flows against that server
 
 The Playwright config uses `/usr/bin/chromium`, which exists in this cloud environment. On another machine, install a Playwright browser with `npx playwright install chromium` and remove `executablePath` from `playwright.config.ts` or point it to your system Chromium. Browser downloads may require allowing `cdn.playwright.dev`; this environment used its existing verified system browser instead. Playwright does not start the server automatically.
 
-The browser tests cover note create/read/persistence/delete/restore, event creation, mobile launcher/full-screen layout, journal autosave persistence, and savings totals. Unit checks cover anniversary boundaries, window placement and the twelve-month seed plan. They do not validate Supabase RLS or the full requested feature set.
+Browser tests cover note create/read/persistence/delete/restore, event creation, window controls, mobile navigation, bulk import/deduplication, agenda editing, notebook pages/sticky notes, photo metadata and download names, journal autosave persistence, and savings totals. Unit checks cover anniversary boundaries, window placement, the twelve-month seed plan, import parsing/validation, agenda inclusion and safe photo renaming. They do not validate Supabase RLS or the full requested feature set.
 
 ## Vercel deployment
 
