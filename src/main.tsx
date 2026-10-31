@@ -4,4 +4,5 @@ import App from './App';
 import './styles/global.css';
 import './styles/enhancements.css';
 import './styles/love.css';
+import './styles/together.css';
 createRoot(document.getElementById('root')!).render(<StrictMode><App/></StrictMode>);

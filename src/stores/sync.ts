@@ -1,0 +1,2 @@
+import { create } from 'zustand';
+export const useSync=create<{pending:number;lastSaved:string|null;error:string;run:<T>(work:()=>Promise<T>)=>Promise<T>}>((set)=>({pending:0,lastSaved:null,error:'',run:async work=>{set(s=>({pending:s.pending+1,error:''}));try{const result=await work();set({lastSaved:new Date().toISOString()});return result}catch(e){set({error:(e as Error).message||'Not saved'});throw e}finally{set(s=>({pending:s.pending-1}))}}}));

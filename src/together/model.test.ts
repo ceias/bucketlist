@@ -1,0 +1,11 @@
+import { describe,it,expect } from 'vitest';
+import { coordinates,dueNext,latestTask,monthlyMemories,pickIdea,safeLink,type Entry,type Action } from './model';
+import { emptyDraft } from '../stores/data';
+const entry=(id:string,data:Record<string,unknown>):Entry=>({id,kind:'idea',title:id,workspace_id:'s',owner_id:'a',body:'',date:null,unlock_at:null,data,created_at:'',updated_at:''});
+describe('our together space',()=>{
+ it('only opens HTTPS links and validates map coordinates',()=>{expect(safeLink('javascript:alert(1)')).toBeNull();expect(safeLink('http://example.com')).toBeNull();expect(safeLink('https://open.spotify.com/track/1')).toContain('https://');expect(coordinates('',0)).toBeNull();expect(coordinates(91,0)).toBeNull();expect(coordinates(14.5,121)).toEqual({lat:14.5,lng:121});});
+ it('draws only ideas that fit both budget and setting',()=>{const entries=[entry('picnic',{budget:500,setting:'out'}),entry('movie',{budget:100,setting:'home'}),entry('dinner',{budget:3000,setting:'out'})];expect(pickIdea(entries,1000,'out',()=>0)?.id).toBe('picnic');expect(pickIdea(entries,50,'any')).toBeNull();});
+ it('excludes private and deleted memories from recaps',()=>{const photo={...emptyDraft('gallery'),id:'photo',date:'2026-11-01'};const note={...photo,id:'private',kind:'journal',private:true};const goal={...photo,id:'goal',kind:'bucket',done:true};expect(monthlyMemories([photo,note,goal,{...photo,id:'deleted',deleted:true}],'2026-11').map(i=>i.id)).toEqual(['photo','goal']);});
+ it('resolves checklist responses by latest server timestamp',()=>{const a:Action={workspace_id:'s',owner_id:'a',record_id:null,shared:true,created_at:'2026-11-01T12:00:00Z',id:'a',entry_id:'list',kind:'task',key:'task',updated_at:'2026-11-01T12:00:00Z',value:{done:true}};const b={...a,id:'b',updated_at:'2026-11-01T13:00:00Z',value:{done:false}};expect(latestTask([a,b],'list','task')?.value.done).toBe(false);});
+ it('advances weekly traditions and clamps monthly dates at month-end',()=>{expect(dueNext('2026-10-31','monthly',new Date(2026,10,1))?.getDate()).toBe(30);expect(dueNext('2026-10-31','monthly',new Date(2026,10,1))?.getMonth()).toBe(10);expect(dueNext('2026-10-01','weekly',new Date(2026,10,1))!>=new Date(2026,10,1)).toBe(true)});
+});

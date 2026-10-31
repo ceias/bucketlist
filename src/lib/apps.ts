@@ -11,6 +11,7 @@ export const apps = [
  {id:'anniversary',name:'Anniversary Vault',short:'Our Vault',icon:Heart,color:'pink',caption:'13 reasons, every February 13'},
  {id:'notes',name:'Little Notes',short:'Notes',icon:StickyNote,color:'yellow',caption:'Small thoughts, safely tucked away'},
  {id:'wishlist',name:'Our Wishlist',short:'Wishlist',icon:Gift,color:'green',caption:'Someday, with you'},
+ {id:'together',name:'Our Together Space',short:'Together',icon:Heart,color:'pink',caption:'A little closer, every day'},
  {id:'settings',name:'Make It Ours',short:'Settings',icon:Settings,color:'green',caption:'Your own little corner'},
  {id:'trash',name:'Trash',short:'Trash',icon:Trash2,color:'cream',caption:'A second chance for little things'},
 ] as const;

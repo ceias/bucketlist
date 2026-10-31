@@ -64,6 +64,16 @@ begin
  not exists(select 1 from storage.objects o where o.bucket_id='memories' and o.name=r.data->>'path'))) then
  raise exception 'A source photo is missing or has an unexpected path. Repair it before merging';end if;
 
+ -- New Together content needs a dedicated migration, never silently leave it behind.
+ if to_regclass('public.couple_entries') is not null then
+  lock table public.couple_entries,public.couple_actions,public.couple_activity,public.couple_inbox,public.couple_reminders in exclusive mode;
+  if exists(select 1 from public.couple_entries where workspace_id=move_space)
+  or exists(select 1 from public.couple_actions where workspace_id=move_space)
+  or exists(select 1 from public.couple_activity where workspace_id=move_space)
+  or exists(select 1 from public.couple_inbox where workspace_id=move_space)
+  or exists(select 1 from public.couple_reminders where workspace_id=move_space) then
+   raise exception 'The source already has Together content; prepare a dedicated merge instead of leaving it behind';end if;
+ end if;
  insert into public.workspace_storage_aliases(source_workspace_id,target_workspace_id) values(move_space,keep_space);
  -- This one existing ownership guard blocks workspace changes even for administrators.
  -- Disable it only inside this locked transaction; ownership/privacy/IDs stay unchanged.

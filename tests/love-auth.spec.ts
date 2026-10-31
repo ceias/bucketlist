@@ -100,6 +100,11 @@ test('a partner photo can be favorited, renamed, trashed and restored without ch
   await page.getByRole('button',{name:'Favorite Ramen Date',exact:true}).click();
   await expect(page.getByRole('button',{name:'Favorite Ramen Date',exact:true})).toHaveAttribute('aria-pressed','true');
   await page.getByRole('button',{name:'Edit Ramen Date',exact:true}).click();
+  await page.getByRole('button',{name:'0 hearts',exact:true}).click();
+  await expect(page.getByRole('button',{name:'1 hearts',exact:true})).toHaveAttribute('aria-pressed','true');
+  await page.getByLabel('Photo comment',{exact:true}).fill('One of my favorite days ♡');
+  await page.getByRole('button',{name:'Post comment',exact:true}).click();
+  await expect(page.locator('.photo-comments')).toContainText('One of my favorite days ♡');
   await page.getByLabel('Photo file name').fill('Our Ramen Date.jpg');
   await page.getByRole('button',{name:'Save changes',exact:true}).click();
   await expect(page.getByText('Memory updated',{exact:true})).toBeVisible();

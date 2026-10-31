@@ -1,3 +1,7 @@
+# Together Space release
+
+All approved features except home-screen installation (18) are implemented. Start with [the complete setup and feature guide](docs/together-setup.md): run only migration 005 for your existing project, then deploy/schedule the separate reminder function if you want scheduled delivery. Existing workspace merges, photos, credentials and agenda-email schedules stay intact.
+
 # Gio & Me OS
 
 A little OS for a bigger us. An initial, working React + TypeScript desktop for The Gio & Me Project, using the supplied asset kit’s pastel stationery style.

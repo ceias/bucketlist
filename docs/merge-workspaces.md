@@ -1,6 +1,6 @@
 # Merge two solo workspaces
 
-Use this administrator repair when both partners accidentally created separate workspaces. This is not an invitation bypass available to website users. Both accounts must have confirmed emails, and each workspace must have exactly one member. Requires migrations 001–004.
+Use this administrator repair when both partners accidentally created separate workspaces. This is not an invitation bypass available to website users. If the source has new Together Space content, the script stops rather than leaving it behind; request a dedicated merge for those tables. Both accounts must have confirmed emails, and each workspace must have exactly one member. Requires migrations 001–004.
 
 1. Have both partners sign out of the website and pause edits/uploads until finished. Keep a project backup or export first, using the backup/export tools available on your Supabase plan.
 2. Open `supabase/admin/merge_solo_workspaces.sql` and copy the whole script into a **new** Supabase SQL Editor query, using the project administrator role.
