@@ -1,3 +1,4 @@
+import { createId } from '../lib/id';
 import { useEffect, useState } from 'react';
 import { Camera, Upload, Heart, Trash2, X, Download, FolderHeart, Images, Search, Pencil, Check, StickyNote, CalendarDays, LoaderCircle } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
@@ -54,7 +55,7 @@ export function Gallery() {
     setUploading(true);let path:string|undefined;
     try {
       let data:Record<string,string>={fileName:file.name,mimeType:file.type};
-      if(mode==='cloud') { path=`${workspace}/${user}/${crypto.randomUUID()}.${file.type==='image/jpeg'?'jpg':file.type.split('/')[1]}`;const {error}=await supabase!.storage.from('memories').upload(path,file,{contentType:file.type});if(error)throw error;data.path=path; }
+      if(mode==='cloud') { path=`${workspace}/${user}/${createId()}.${file.type==='image/jpeg'?'jpg':file.type.split('/')[1]}`;const {error}=await supabase!.storage.from('memories').upload(path,file,{contentType:file.type});if(error)throw error;data.path=path; }
       else { if(file.size>2*1024*1024)throw Error('Local preview photos must be under 2 MB. Connect Supabase for larger uploads.');data.localUrl=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=()=>reject(Error('Could not read this photograph.'));reader.readAsDataURL(file);}); }
       await save({...emptyDraft('gallery'),title:file.name.replace(/\.[^.]+$/,'').slice(0,200),category:album==='All memories'?'Little Moments':album,data});
     } catch(e) { if(path)await supabase?.storage.from('memories').remove([path]);setError((e as Error).message); }

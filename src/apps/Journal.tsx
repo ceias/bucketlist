@@ -1,3 +1,4 @@
+import { createId } from '../lib/id';
 import { useEffect, useRef, useState } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -77,7 +78,7 @@ export function Journal() {
     try {
       await flushBody();
       const date = format(new Date(), 'yyyy-MM') === month ? format(new Date(), 'yyyy-MM-dd') : month + '-01';
-      const item = { ...emptyDraft('journal'), date, id: crypto.randomUUID(), title: 'A little moment', category: 'Little moments', data: { createdAt: new Date().toISOString() } };
+      const item = { ...emptyDraft('journal'), date, id: createId(), title: 'A little moment', category: 'Little moments', data: { createdAt: new Date().toISOString() } };
       await save(item); setId(item.id); setDirection(1); setStatus('');
     } catch { setStatus('Could not open a new page. Please save your current writing and try again.'); }
   }

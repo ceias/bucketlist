@@ -1,3 +1,4 @@
+import { createId } from '../lib/id';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import { ClipboardPaste, X, ArrowRight, Check, CalendarDays, LoaderCircle, AlertCircle } from 'lucide-react';
@@ -26,8 +27,10 @@ export function BulkGoals({ month, onClose }: { month: string; onClose: () => vo
   async function importGoals() {
     if (lock.current || !ready.length || parsed.issues.length) return;
     lock.current = true; setBusy(true); setError('');
-    pending.current ??= ready.map(row => ({ ...emptyDraft('bucket'), id: crypto.randomUUID(), title: row.title, date: row.date, category: row.category, body: row.body, data: { showOnCalendar: onCalendar } }));
-    try { await saveMany(pending.current); onClose(); }
+    try {
+      pending.current ??= ready.map(row => ({ ...emptyDraft('bucket'), id: createId(), title: row.title, date: row.date, category: row.category, body: row.body, data: { showOnCalendar: onCalendar } }));
+      await saveMany(pending.current); onClose();
+    }
     catch (e) { setError((e as Error).message + ' Your paste is still here. You can try again.'); }
     finally { lock.current = false; setBusy(false); }
   }

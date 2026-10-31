@@ -12,6 +12,8 @@ npm ci
 npm run dev
 ```
 
+For development on this computer, prefer `http://localhost:5173`. When accessing a Vite network address over plain HTTP, the app generates UUIDs using `crypto.getRandomValues` if `crypto.randomUUID` is unavailable. It never falls back to `Math.random`. Local preview storage belongs to each browser origin, so localhost and a LAN address have separate preview data. Production should use HTTPS.
+
 The frontend works without backend configuration in **local preview**. Records persist in this browser’s localStorage. Preview data is not shared, backed up, or account-isolated. A “private” flag in preview is not an access-control boundary. Clearing browser data removes it. Local photos are limited to 2 MB each because browser storage is small. Do not use preview for sensitive information.
 
 Open Bucket List and choose “Add the editable 12-month starter plan” to import the requested November 2026–October 2027 goals. Import runs once per local preview or cloud workspace, including after goals are deleted. Starter goals are editable and removable. Financial totals begin at zero; no demonstration money is presented as actual spending.
