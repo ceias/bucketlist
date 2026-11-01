@@ -10,4 +10,6 @@ import './styles/happy-desk.css';
 import './styles/scrapbook-desk.css';
 import './styles/retro-desktop.css';
 import './styles/ink-os.css';
+import './styles/monochrome-themes.css';
+import './styles/desktop-theme-pack.css';
 createRoot(document.getElementById('root')!).render(<StrictMode><App/></StrictMode>);

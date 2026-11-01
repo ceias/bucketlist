@@ -20,3 +20,13 @@ The site uses a retro personal-computer style: dark outlines, cream panels, hard
 Open **Settings → Typography** to choose **Classic stationery**, **Simple & clear**, **Soft round (Nunito)**, **Bubblegum (Fredoka)**, **Notebook (Patrick Hand)** or **Pixel diary (VT323)**. The six preview cards apply the choice immediately, and it persists on this browser/device. Existing saved font preferences are retained; new browsers start with Soft round. Pixel and handwritten styles use readable text for controls and longer passages. Some window/control labels use a fixed readable face while app headings keep your selected typography.
 
 The four additional fonts are bundled locally, with their Open Font Licenses in `public/fonts`. No Google Fonts or other font-service request is needed when visiting the site. No Supabase changes are needed.
+
+Choose a saved appearance in **Settings → Theme**. Five additional styles are available alongside the existing palettes:
+
+- **Midnight Terminal** — indigo-black panels, white pixel outlines and dithered title bars.
+- **Classic Macintosh** — gray windows, striped title bars and checkerboard wallpaper.
+- **Sweetheart Aero** — glossy pink title bars, rounded controls and green action buttons.
+- **Soft Finder** — white windows, blush details, traffic-light window controls and a pinned application dock.
+- **Graphite Dock** — silver frames, a textured gray desktop and a classic icon dock.
+
+Themes apply to the desktop and app windows. The dock launches pinned apps and includes other open apps; scroll it horizontally on small screens. Theme choices remain saved on this browser after refresh. Existing palettes and font choices remain available, and photos retain their original colors. No database setup is required.

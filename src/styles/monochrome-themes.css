@@ -1,0 +1,116 @@
+.mono-wallpaper-details{display:none}
+.ink-os.theme-midnight{color-scheme:dark;--os-ink:#f0eef5;--os-paper:#191724;--os-pink:#3c3448;--os-green:#302c3d;--os-muted:#c1b9d0;--mono-bg:#100f19;--mono-control:#211e2d;--mono-raised:#2a2536;--mono-muted:#bdb6ca;--mono-line:#7a738b;--mono-shadow:#07060c;--mono-accent:#d4c6ef;--rose:#cec0e5;--pale:#332b42;--line:#8e849f;--cocoa:#eee9f5;--white:#191724;color:var(--os-ink)}
+.ink-os.theme-macintosh{color-scheme:light;--os-ink:#242522;--os-paper:#f3f3ed;--os-pink:#c9c9c3;--os-green:#deded7;--os-muted:#62665c;--mono-bg:#a8a9a0;--mono-control:#fcfcf7;--mono-raised:#e0e0d9;--mono-muted:#5d6159;--mono-line:#8b8e83;--mono-shadow:#464842;--mono-accent:#33382e;--rose:#50594a;--pale:#ddddce;--line:#797c72;--cocoa:#242522;--white:#f3f3ed;color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .os-layout{background:var(--mono-bg);background-image:none}
+.ink-os.theme-macintosh .os-layout{background-image:repeating-conic-gradient(#9c9e94 0 25%,#bec0b5 0 50%);background-size:4px 4px}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.system-bar,.taskbar,.side-dock,.os-window,.window-body,.window-navigation,.launcher,.notification-panel,.agenda-popover,.agenda-widget,.cozy-desktop){background:var(--os-paper)!important;color:var(--os-ink);border-color:var(--os-ink);box-shadow:4px 4px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.system-bar,.taskbar,.cozy-desktop){box-shadow:none}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.app-page,.gallery-layout,.journal-app,.settings-page,.home-page){color:var(--os-ink);background-color:var(--os-paper)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.cozy-desktop,.os-window,.side-dock,.launcher,.notification-panel,.agenda-popover) :is(h1,h2,h3,h4,p,small,label,time,dt,dd,summary,strong,b){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.quiet-note,.eyebrow,.creator-label,.page-foot,.record-meta,.record-meta>span,.record-kicker,.calendar-legend,.status-tag,.sync-status,.system-breadcrumb,.system-breadcrumb button,.system-breadcrumb>span:last-child,.taskbar-status,.dock-group-label,.all-apps){color:var(--mono-muted)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(input,select,textarea,.search-input,.launcher-search){background:var(--mono-control);color:var(--os-ink);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(input,textarea)::placeholder{color:var(--mono-muted)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(input,select,textarea):focus{box-shadow:0 0 0 3px var(--mono-raised)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .search-input input,.ink-os:is(.theme-midnight,.theme-macintosh) .launcher-search input{background:transparent}
+.ink-os:is(.theme-midnight,.theme-macintosh) input[type=checkbox]{accent-color:var(--mono-accent)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.button,.icon-button,.text-button,.system-status button,.show-desktop-button,.start-button,.taskbar-apps>button,.dock-group>button){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.button,.system-status .top-agenda-button,.system-status .top-apps-button,.system-status .top-invite-button,.system-status .top-comfort-button){background:var(--mono-control);border-color:var(--os-ink);box-shadow:2px 2px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .button.primary{background:var(--os-ink);color:var(--os-paper)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .button.primary:hover{background:var(--mono-accent);color:var(--os-paper)}
+.ink-os:is(.theme-midnight,.theme-macintosh) button:focus-visible,.ink-os:is(.theme-midnight,.theme-macintosh) a:focus-visible{outline-color:var(--mono-accent)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .window-titlebar{position:relative;isolation:isolate;background:var(--os-paper);color:var(--os-ink);border-color:var(--os-ink);font-family:VT323,monospace}
+.ink-os:is(.theme-midnight,.theme-macintosh) .window-titlebar:after{content:'';position:absolute;top:7px;bottom:7px;left:44%;right:103px;background-image:radial-gradient(var(--os-ink) .8px,transparent .8px);background-size:3px 3px;opacity:.7;z-index:-1;pointer-events:none}
+.ink-os.theme-macintosh .window-titlebar:after{left:35%;background:repeating-linear-gradient(var(--os-ink) 0 1px,transparent 1px 3px)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .window-titlebar>span{background:var(--os-paper);padding:0 7px 0 0;font:18px VT323,monospace;color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .window-titlebar>span i{color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .window-controls button{background:var(--mono-control);color:var(--os-ink);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .window-controls button:hover{background:var(--mono-raised)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .window-navigation>span,.ink-os:is(.theme-midnight,.theme-macintosh) .tiny-heart{color:var(--mono-muted)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .window-body{scrollbar-color:var(--os-ink) var(--mono-raised)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.side-dock .app-icon,.launcher-grid .app-icon){background:var(--mono-control);color:var(--os-ink);border-color:var(--os-ink);box-shadow:2px 2px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.dock-group>button.dock-active,.dock-group>button:hover,.taskbar-apps>button.active){background:var(--mono-raised);border-color:var(--os-ink);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.record-card,.dashboard-card,.mission-banner,.tradition,.account-panel,.workspace-status,.visit-activity,.visit-member,.together-card,.idea-draw,.daily-prompt,.recap-banner,.memory-card,.memory-timeline-empty,.plan-together,.photo-social,.calendar-month-goals){background:var(--os-paper);color:var(--os-ink);border-color:var(--os-ink);box-shadow:3px 3px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.mission-banner,.recap-banner,.workspace-status,.daily-prompt,.idea-draw){background:var(--mono-raised)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.record-main h3,.record-body,.record-kicker,.record-meta,.record-meta>span,.together-card h2,.together-card p,.visit-member dd,.visit-member>p,.memory-card h3,.memory-card-kind,.memory-card-bottom time){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.visit-member dt,.visit-member time small,.visit-member summary,.together-connection,.shared-checklist small){color:var(--mono-muted)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.privacy-badge,.privacy-badge.only-you,.visit-member-heading>span,.activity-heart,.memory-card-bottom button){background:var(--mono-raised);border-color:var(--os-ink);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.together-tabs button,.tabs button,.activity-feed>button){background:var(--mono-control);border-color:var(--os-ink);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.together-tabs button[aria-current=page],.tabs button.selected,.together-row .button[aria-pressed=true]){background:var(--mono-raised);color:var(--os-ink);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .prompt-answers blockquote{background:var(--mono-raised);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.memory-card-preview,.photo-detail-view,.gallery-albums,.notebook-index,.workspace-partners>div){background:var(--mono-raised);color:var(--os-ink);border-color:var(--mono-line)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.polaroid,.photo-detail-form,.photo-detail,.slideshow,.places-map,.editor.paper,.font-sample,.theme-swatch){background:var(--os-paper);border-color:var(--os-ink);color:var(--os-ink);box-shadow:3px 3px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.photo-comments p,.draw-result,.mood-stamp,.together-home-banner){background:var(--mono-raised);border-color:var(--mono-line);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.photo-detail-form label,.gallery-tip,.photo-note-preview,.photo-filename,.polaroid-footer,.gallery-albums>button,.gallery-count){color:var(--mono-muted)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .gallery-albums>button.selected{background:var(--os-paper);color:var(--os-ink);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .ruled-page{background-color:var(--os-paper);background-image:repeating-linear-gradient(transparent 0 31px,var(--mono-line) 31px 32px);border-color:var(--os-ink);box-shadow:4px 4px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .ruled-page .journal-writing,.ink-os:is(.theme-midnight,.theme-macintosh) .ruled-page .journal-title{color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.journal-sticky,.notebook-month-tabs>button,.notebook-month-tabs>button:nth-child(even)){background:var(--mono-raised);color:var(--os-ink);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.journal-sticky textarea,.journal-sticky label,.notebook-index .journal-entry-link){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .notebook-index .journal-entry-link.selected{background:var(--mono-control)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .calendar-page .fc{--fc-border-color:var(--mono-line);--fc-page-bg-color:var(--os-paper);--fc-today-bg-color:var(--mono-raised);--fc-button-bg-color:var(--mono-control);--fc-button-text-color:var(--os-ink);--fc-button-border-color:var(--os-ink);--fc-button-hover-bg-color:var(--mono-raised);--fc-button-hover-border-color:var(--os-ink);--fc-button-active-bg-color:var(--mono-raised);--fc-button-active-border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .fc-col-header-cell a,.ink-os:is(.theme-midnight,.theme-macintosh) .fc-daygrid-day-number{color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.agenda-heading,.launcher-heading,.launcher-footer,.widget-calendar,.widget-agenda){background:var(--os-paper);border-color:var(--mono-line);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.agenda-heading h2,.widget-month,.widget-days button,.agenda-event-copy b,.agenda-heading .eyebrow){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.agenda-date-chip,.agenda-date-chip.sage,.agenda-view-tabs>button.selected){background:var(--mono-raised);border-color:var(--os-ink);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.agenda-event-copy small,.agenda-view-tabs>button,.widget-weekdays){color:var(--mono-muted)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.partner-notice,.partner-notice.unread,.partner-update-toast,.together-inbox-item,.together-inbox-item.unread){background:var(--os-paper);border-color:var(--mono-line);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.partner-notice-icon,.email-alert-heading>span){background:var(--mono-raised);color:var(--os-ink);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.email-delivery-pending,.notification-setup-message){background:var(--mono-raised);color:var(--os-ink);border-color:var(--mono-line)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.comfort-arcade,.arcade-result){background:var(--os-paper);color:var(--os-ink);border-color:var(--os-ink);box-shadow:4px 4px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.arcade-titlebar,.arcade-arrow,.claw-machine){background:var(--mono-raised);border-color:var(--os-ink);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .claw-machine{box-shadow:inset 0 0 0 4px var(--os-paper)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .claw-machine>svg{filter:grayscale(1)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.arcade-intro h1,.arcade-result h2,.arcade-result p,.arcade-result .eyebrow,.arcade-hourly-refresh,.machine-caption,.claw-controls>label){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.arcade-footnote,.arcade-intro p,.arcade-intro .eyebrow){color:var(--mono-muted)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.font-sample[aria-pressed=true],.theme-swatch.chosen){background:var(--mono-raised);border-color:var(--os-ink);outline-color:var(--mono-accent);box-shadow:3px 3px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .font-sample :is(span,b,small){color:var(--os-ink)}
+.ink-os .theme-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.ink-os .theme-swatch.midnight>div{background:#151321;background-image:radial-gradient(#e3dbea 1px,transparent 1px);background-size:5px 5px}.ink-os .theme-swatch.midnight i{background:#efedf5;border:1px solid #81768f}.ink-os .theme-swatch.macintosh>div{background:repeating-conic-gradient(#aaa 0 25%,#ddd 0 50%);background-size:4px 4px}.ink-os .theme-swatch.macintosh i{background:#f9f9f3;border:1px solid #222}
+/* The monochrome wallpaper is ornamental; photographs never receive color filters. */
+.ink-os:is(.theme-midnight,.theme-macintosh) .cozy-desktop{background:var(--mono-bg)!important;color:var(--os-ink)}
+.ink-os.theme-macintosh .cozy-desktop{background-image:repeating-conic-gradient(#adafa4 0 25%,#c9cbbe 0 50%)!important;background-size:4px 4px!important}
+.ink-os:is(.theme-midnight,.theme-macintosh) .retro-wallpaper-art{background:none}.ink-os:is(.theme-midnight,.theme-macintosh) :is(.ink-wallpaper-stripe,.ink-wallpaper-flower){display:none}
+.ink-os:is(.theme-midnight,.theme-macintosh) .mono-wallpaper-details{display:block;position:absolute;inset:0;color:var(--os-ink);opacity:.45}
+.mono-binary{position:absolute;font:12px/1.5 VT323,monospace;letter-spacing:14px;writing-mode:vertical-rl;user-select:none}.binary-left{left:2%;top:4%}.binary-right{right:3%;top:4%}.mono-cross{position:absolute;left:29%;bottom:6%;font:90px/1 Arial,sans-serif;transform:rotate(-7deg)}.mono-ring{position:absolute;right:1%;top:47%;width:64px;height:64px;border:2px dashed currentColor;border-radius:50%}.mono-dots{position:absolute;left:40%;top:2%;width:100px;height:35px;background:radial-gradient(currentColor 1px,transparent 1px);background-size:4px 4px}
+.ink-os.theme-macintosh .mono-wallpaper-details{display:none}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.ink-desktop-label,.ink-wallpaper-stamp){color:var(--os-ink);background:var(--mono-bg);padding:3px 7px;font-family:VT323,monospace}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.desk-happy-badge,.desk-polaroid,.desk-sticky-note,.desk-countdown,.desk-upcoming,.desk-comfort-jar,.cat-guide-bubble){background:var(--os-paper);border-color:var(--os-ink);color:var(--os-ink);box-shadow:4px 4px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .desk-intro h1,.ink-os:is(.theme-midnight,.theme-macintosh) .desk-intro h1 em{color:var(--os-ink);font-family:VT323,monospace;font-weight:400;font-size:clamp(38px,3.4vw,52px);letter-spacing:0}
+.ink-os.theme-macintosh .desk-intro h1,.ink-os.theme-macintosh .desk-intro h1 em{font-family:var(--chosen-display,Nunito,sans-serif);font-weight:700;font-size:clamp(32px,2.8vw,42px)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.desk-heading-heart,.desk-intro>.eyebrow,.desk-intro>p,.desk-handwritten,.desk-footer-note,.desk-footer-note button){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .desk-handwritten:after{border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .desk-shortcuts button>span:last-child{background:var(--os-paper);color:var(--os-ink);border-color:var(--mono-line)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .retro-system-icon{filter:none}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.retro-widget-bar,.desk-upcoming header,.desk-countdown>.eyebrow){background:var(--mono-raised);color:var(--os-ink);border-color:var(--os-ink);font-family:VT323,monospace}
+.ink-os.theme-midnight :is(.retro-widget-bar,.desk-upcoming header,.desk-countdown>.eyebrow){background-image:radial-gradient(#e5dfef22 .7px,transparent .7px);background-size:3px 3px}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.retro-widget-bar i,.desk-polaroid-caption>span,.desk-polaroid>small,.desk-sticky-note .eyebrow,.desk-sticky-note p,.desk-countdown b,.desk-countdown>p,.desk-upcoming h2,.desk-upcoming b){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.desk-sticky-note>small,.desk-countdown b small,.desk-upcoming small){color:var(--mono-muted)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.desk-upcoming .text-button,.desk-countdown .text-button){color:var(--mono-accent)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.desk-upcoming header>button,.desk-agenda-mark,.desk-upcoming>div>button:nth-child(2) .desk-agenda-mark,.desk-upcoming>div>button:nth-child(3) .desk-agenda-mark){background:var(--mono-control);color:var(--os-ink);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .desk-upcoming>div>button{border-color:var(--mono-line)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .desk-photo-empty{background:var(--mono-raised);color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.desk-photo-sticker,.desk-note-pin,.jar-tag,.cat-name){background:var(--os-paper);color:var(--os-ink);border-color:var(--os-ink);outline-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .desk-note-pin:after{border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) :is(.jar-invitation>.eyebrow,.jar-invitation>b,.jar-invitation>small){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .jar-play-pill{background:var(--os-ink);color:var(--os-paper);border-color:var(--os-ink);box-shadow:2px 2px 0 var(--mono-shadow)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .jar-lid{background:var(--mono-raised);border-color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .jar-glass{background:var(--mono-control);border-color:var(--os-ink);box-shadow:none}
+.ink-os:is(.theme-midnight,.theme-macintosh) .cat-guide-bubble :is(b,p,button,footer){color:var(--os-ink)}
+.ink-os:is(.theme-midnight,.theme-macintosh) .error,.ink-os:is(.theme-midnight,.theme-macintosh) [role=alert]{color:#d79ab8}
+.ink-os.theme-macintosh .error,.ink-os.theme-macintosh [role=alert]{color:#8d3f5b}
+.ink-os:is(.theme-midnight,.theme-macintosh) .error-toast{background:var(--os-paper);border-color:var(--os-ink);box-shadow:3px 3px 0 var(--mono-shadow)}
+@media(max-width:1000px){.ink-os .theme-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:759px){.ink-os:is(.theme-midnight,.theme-macintosh) .os-window{box-shadow:none}.mono-binary{font-size:9px;letter-spacing:9px}.binary-left{left:1%;top:2%}.binary-right{right:1%;top:27%}.mono-cross{font-size:55px;left:72%;bottom:3%}.mono-ring{right:1%;top:52%;width:40px;height:40px}.mono-dots{left:60%;width:60px}.ink-os:is(.theme-midnight,.theme-macintosh) .window-titlebar:after{left:55%;right:100px}}
+.ink-os:is(.theme-midnight,.theme-macintosh) .desk-intro h1 em{font-size:1em}.ink-os:is(.theme-midnight,.theme-macintosh) .pixel-cat-art{filter:grayscale(1)}.ink-os:is(.theme-midnight,.theme-macintosh) .breathing-guide{color:var(--os-ink)}.ink-os:is(.theme-midnight,.theme-macintosh) .breathing-guide>span{background:var(--mono-raised);border-color:var(--os-ink)}.ink-os:is(.theme-midnight,.theme-macintosh) .progress{background:var(--mono-raised)}.ink-os:is(.theme-midnight,.theme-macintosh) .progress i{background:var(--os-ink)}
+.love-screen.theme-midnight{color-scheme:dark;--login-ink:#f0eef5;--login-paper:#191724;--login-raised:#2b2638;--login-muted:#bdb6ca;background:#100f19;background-image:radial-gradient(#afa5c222 .8px,transparent .8px);background-size:5px 5px;color:var(--login-ink)}
+.love-screen.theme-macintosh{color-scheme:light;--login-ink:#242522;--login-paper:#f3f3ed;--login-raised:#deded7;--login-muted:#5d6159;background:#a8aaa0;background-image:repeating-conic-gradient(#9c9e94 0 25%,#bec0b5 0 50%);background-size:4px 4px;color:var(--login-ink)}
+.love-screen:is(.theme-midnight,.theme-macintosh) :is(.love-login-window,.love-welcome-card,.workspace-setup-card,.invite-page-card,.invite-page-request,.love-profile-card,.love-profile-polaroid,.love-browser-chrome,.love-browser-chrome>div){background:var(--login-paper);color:var(--login-ink);border-color:var(--login-ink);box-shadow:5px 5px 0 #0006}
+.love-screen:is(.theme-midnight,.theme-macintosh) :is(.love-browser-chrome,.love-profile-card,.love-auth-tabs){background:var(--login-raised);box-shadow:none}
+.love-screen:is(.theme-midnight,.theme-macintosh) :is(input,textarea,select){background:var(--login-paper);color:var(--login-ink);border-color:var(--login-ink)}
+.love-screen:is(.theme-midnight,.theme-macintosh) :is(h1,h2,h3,p,label,.love-auth-form>p,.love-auth-form label,.love-auth-form .eyebrow,.love-profile-card h1 em,.love-brand){color:var(--login-ink)}
+.love-screen:is(.theme-midnight,.theme-macintosh) :is(.love-submit,.love-profile-seal,.love-profile-polaroid>span,.love-auth-tabs button.selected){background:var(--login-raised);color:var(--login-ink);border-color:var(--login-ink);box-shadow:none}
+.love-screen:is(.theme-midnight,.theme-macintosh) :is(.love-auth-tabs button,.love-forgot,.love-screen-footer,.text-button){color:var(--login-muted)}
+.love-screen:is(.theme-midnight,.theme-macintosh) input::placeholder{color:var(--login-muted)}
+.love-screen:is(.theme-midnight,.theme-macintosh) :is(.love-form-error,.love-form-message){background:var(--login-raised);border-color:var(--login-muted);color:var(--login-ink)}
+@media(max-width:759px){.ink-os.theme-midnight .desk-intro h1{font-size:43px}.ink-os.theme-macintosh .desk-intro h1{font-size:36px}}
+
+.ink-os:is(.theme-midnight,.theme-macintosh) .show-desktop-button{background:var(--mono-control);color:var(--os-ink)}

@@ -13,8 +13,8 @@ import { InvitationCard } from './InvitationCard';
 import { PartnerInvite } from './PartnerInvite';
 
 function LoveFrame({ children }: { children: React.ReactNode }) {
-  const motion=usePreferences(s=>s.motion);
-  return <main className={`love-screen ${motion?'':'no-motion'}`}><div className="love-brand"><img src="/assets/decorations/flower.svg" alt=""/><span>Gio & Bri <b>OS</b></span><Heart size={15}/></div><div className="love-floating-hearts" aria-hidden="true">{Array.from({length:9},(_,i)=><Heart key={i} className={`floating-heart heart-${i}`} fill="currentColor"/>)}</div>{children}<footer className="love-screen-footer">a little OS for a bigger us <Heart size={12}/> made for our ordinary, extraordinary days</footer></main>;
+  const motion=usePreferences(s=>s.motion);const theme=usePreferences(s=>s.theme);
+  return <main className={`love-screen theme-${theme} ${motion?'':'no-motion'}`}><div className="love-brand"><img src="/assets/decorations/flower.svg" alt=""/><span>Gio & Bri <b>OS</b></span><Heart size={15}/></div><div className="love-floating-hearts" aria-hidden="true">{Array.from({length:9},(_,i)=><Heart key={i} className={`floating-heart heart-${i}`} fill="currentColor"/>)}</div>{children}<footer className="love-screen-footer">a little OS for a bigger us <Heart size={12}/> made for our ordinary, extraordinary days</footer></main>;
 }
 function BrowserChrome() { return <div className="love-browser-chrome"><span><i/><i/><i/></span><div><Heart size={11}/> our little corner / welcome</div><Heart size={18}/></div>; }
 function Welcome({ onEnter, workspace }: { onEnter: () => void; workspace: string }) {

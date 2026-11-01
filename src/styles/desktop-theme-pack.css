@@ -1,0 +1,122 @@
+/* Optional glass, Finder-like and silver desktop treatments. */
+.ink-os.theme-aero{--os-ink:#72566b;--os-paper:#fff6fa;--os-pink:#f3c6db;--os-green:#dae9ad;--rose:#bd7d9e;--pale:#f9e2ed;--line:#d9b4c9;color:#72566b}
+.ink-os.theme-finder{--os-ink:#656a64;--os-paper:#fffefd;--os-pink:#f3d8e3;--os-green:#e3eddb;--rose:#c38b9f;--pale:#fae9f0;--line:#ddd6d6;color:#656a64}
+.ink-os.theme-graphite{--os-ink:#353735;--os-paper:#f0f0eb;--os-pink:#d2d2cd;--os-green:#deded7;--rose:#70766c;--pale:#e2e3da;--line:#999e92;color:#353735}
+.ink-os:is(.theme-aero,.theme-finder) .os-layout{background:#f9edf1;background-image:radial-gradient(#e6c0cf 1.1px,transparent 1.1px);background-size:20px 20px}
+.ink-os:is(.theme-aero,.theme-finder) .cozy-desktop{background:#fff8fbd9!important;border:1px solid #f1d9e4;border-radius:16px;box-shadow:0 8px 26px #b2859810}
+.ink-os:is(.theme-aero,.theme-finder) .retro-wallpaper-art{background:radial-gradient(ellipse at 20% 15%,#f7dce7aa,transparent 60%)}
+.ink-os:is(.theme-aero,.theme-finder) .ink-wallpaper-stripe{display:none}
+.ink-os:is(.theme-aero,.theme-finder) .ink-wallpaper-flower{opacity:.2;stroke:#d0a8b8}
+.ink-os:is(.theme-aero,.theme-finder) :is(.ink-desktop-label,.ink-wallpaper-stamp){color:#b8a3ad}
+.ink-os:is(.theme-aero,.theme-finder) :is(.side-dock,.launcher,.notification-panel,.agenda-popover){background:#fffafdeF;border:1px solid #e6d1dc;border-radius:14px;box-shadow:0 5px 22px #a87c951a}
+.ink-os:is(.theme-aero,.theme-finder) .system-bar{background:#fffafcee;border-bottom:1px solid #e3ccd8;color:#8e7884}
+.ink-os:is(.theme-aero,.theme-finder) .taskbar{background:#fffafce8;border-top:1px solid #e3ccd8;color:#96818e}
+.ink-os:is(.theme-aero,.theme-finder) .dock-group>button.dock-active{background:#f5e5ed;border-color:#e8c7d8}
+.ink-os:is(.theme-aero,.theme-finder) .side-dock .app-icon{border:1px solid #d6bdcc;border-radius:9px;box-shadow:0 2px 2px #b28d9f17;color:#af8a9f}
+.ink-os:is(.theme-aero,.theme-finder) :is(.system-status .top-agenda-button,.system-status .top-apps-button,.system-status .top-comfort-button,.system-status .top-invite-button,.show-desktop-button){border:1px solid #dec4d1;border-radius:6px;box-shadow:none;background:#fff9fc;color:#79566e}
+.ink-os:is(.theme-aero,.theme-finder) .system-status .top-comfort-button{background:#f9e3ee}
+.ink-os:is(.theme-aero,.theme-finder) :is(.dashboard-card,.record-card,.mission-banner,.account-panel,.workspace-status,.visit-activity,.visit-member,.together-card,.recap-banner,.memory-card,.plan-together,.photo-social,.calendar-month-goals){border:1px solid #e5ced9;border-radius:12px;background:#fffdfb;box-shadow:0 4px 14px #aa859a0e}
+.ink-os:is(.theme-aero,.theme-finder) :is(.mission-banner,.recap-banner,.workspace-status){background:#f0f4e8}
+.ink-os:is(.theme-aero,.theme-finder) :is(.editor.paper,.photo-detail,.slideshow,.places-map){border:1px solid #d6b3c7;border-radius:16px;background:#fffafc;box-shadow:0 15px 48px #9f748d35}
+.ink-os:is(.theme-aero,.theme-finder) :is(input,textarea,select,.search-input){border:1px solid #dcc5d2;border-radius:8px;background:#fffdfd;color:#836779}
+.ink-os:is(.theme-aero,.theme-finder) :is(.button,.together-tabs button){border:1px solid #d3a8bf;border-radius:9px;box-shadow:0 2px 3px #b5879d15;background:#fff4f9;color:#795069}
+.ink-os:is(.theme-aero,.theme-finder) .button.primary{background:#e0ebbf;border-color:#adbd89;color:#495d2e}
+.ink-os:is(.theme-aero,.theme-finder) :is(.together-tabs button[aria-current=page],.tabs button.selected){background:#f4dce8;border-color:#d2a4bd;color:#784b66}
+.ink-os:is(.theme-aero,.theme-finder) .window-navigation{background:#fff5fa;border-color:#ead6e1;color:#b395a8}
+.ink-os:is(.theme-aero,.theme-finder) .window-body{background:#fffafd}
+.ink-os:is(.theme-aero,.theme-finder) .desk-intro h1{color:#927186}
+.ink-os:is(.theme-aero,.theme-finder) .desk-intro h1 em{color:#c087a3}
+.ink-os:is(.theme-aero,.theme-finder) .desk-happy-badge{border:1px solid #d9b9c9;box-shadow:0 2px 4px #bb8ca322;border-radius:8px;background:#fff7fc;color:#79516c}
+.ink-os:is(.theme-aero,.theme-finder) .desk-intro>p{color:#7b6574}
+.ink-os:is(.theme-aero,.theme-finder) .desk-shortcuts .app-icon{filter:drop-shadow(1px 2px 1px #9f7d9622);color:#b690a6}
+.ink-os:is(.theme-aero,.theme-finder) .desk-shortcuts button>span:last-child{border:1px solid #e2cad7;border-radius:5px;color:#79556e;background:#fff9fdd9}
+.ink-os:is(.theme-aero,.theme-finder) :is(.desk-polaroid,.desk-sticky-note,.desk-countdown,.desk-upcoming,.desk-comfort-jar){border:1px solid #d8b8cc;outline:none;border-radius:12px;background:#fffafc;box-shadow:0 4px 15px #a67e961a}
+.ink-os:is(.theme-aero,.theme-finder) :is(.retro-widget-bar,.desk-upcoming header,.desk-countdown>.eyebrow){border-color:#dfc4d4;background:#f3dbe7;color:#76526a}
+.ink-os:is(.theme-aero,.theme-finder) .desk-sticky-note{background:#fcf1d6}
+.ink-os:is(.theme-aero,.theme-finder) .desk-countdown{background:#fff7e9}
+.ink-os:is(.theme-aero,.theme-finder) :is(.desk-countdown b,.desk-countdown>p,.desk-upcoming h2,.jar-invitation>b){color:#79546e}
+.ink-os:is(.theme-aero,.theme-finder) .desk-comfort-jar{background:#f9e9f1}
+.ink-os:is(.theme-aero,.theme-finder) .jar-play-pill{border:1px solid #c799b3;border-radius:10px;box-shadow:0 2px 4px #ab82951a;background:#eac4d7;color:#72455e}
+.ink-os:is(.theme-aero,.theme-finder) .cat-guide-bubble{border:1px solid #d8b8cc;border-radius:14px;background:#fffafc;box-shadow:0 6px 20px #ac7a9427;color:#73536a}
+.ink-os:is(.theme-aero,.theme-finder) .cat-name{border-color:#d3b7c5;border-radius:10px;background:#fff8fc;color:#73536a}
+/* Sweetheart Aero: pearlescent title bars and pill controls. */
+.ink-os.theme-aero .os-window{border:1.5px solid #bd8fa7;border-radius:13px 13px 7px 7px;box-shadow:0 12px 34px #a5708b3b,inset 0 0 0 1px #fff7;overflow:hidden}
+.ink-os.theme-aero .window-titlebar{position:relative;background:linear-gradient(110deg,#f5dbe7 0,#dfb3cb 42%,#f8e6ef 68%,#e4b9d0);border-bottom:1px solid #bc90a7;color:#86596f;font-family:VT323,monospace;font-size:17px;text-shadow:0 1px #fff9;box-shadow:inset 0 1px #fff}
+.ink-os.theme-aero .window-titlebar>span{font:18px VT323,monospace}
+.ink-os.theme-aero .window-controls{gap:0;padding-right:10px;align-self:flex-start}
+.ink-os.theme-aero .window-controls button{border:1px solid #b88b9f;border-top:0;border-radius:0 0 5px 5px;background:linear-gradient(#f9eef4,#caa9bf);color:#fff;width:29px;height:24px;box-shadow:inset 0 1px 1px #fff9;text-shadow:0 1px #876374}
+.ink-os.theme-aero .window-controls button:last-child{background:linear-gradient(#eeaab0,#c2667d);width:39px;border-color:#b27085}
+.ink-os.theme-aero .button{border-radius:20px;background:linear-gradient(#fffafd,#f0c9dc);box-shadow:inset 0 1px #fff,0 2px 2px #c096aa26;text-shadow:0 1px #fff9}
+.ink-os.theme-aero .button.primary{background:linear-gradient(#f4fbd8,#c5d994);border-color:#adbf7f;color:#687a42}
+.ink-os.theme-aero .theme-swatch.aero>div{background:linear-gradient(120deg,#f8d5e6,#dcb1ca,#fff3f9)}
+.ink-os.theme-aero .comfort-arcade{border-color:#c098b2;border-radius:15px;box-shadow:0 12px 40px #8c5e7845}
+.ink-os.theme-aero .arcade-titlebar{background:linear-gradient(110deg,#f8deea,#ddafc8,#f8e9f0);border-color:#c3a0b6;color:#9c738b}
+/* Soft Finder: light toolbars, rounded file panes and traffic-light controls. */
+.ink-os.theme-finder .os-window{border:1px solid #c9c8c9;border-radius:16px;box-shadow:0 9px 28px #7e72762d;overflow:hidden}
+.ink-os.theme-finder .window-titlebar{background:linear-gradient(#fff,#f1f0f0);border-bottom:1px solid #d9d6d7;color:#989197;font-family:Nunito,sans-serif;font-weight:600}
+.ink-os.theme-finder .window-controls button{border:1px solid #d1cdce;border-radius:50%;width:18px;height:18px;background:#efe6c2;color:#9d946f;box-shadow:inset 0 1px #fff8}
+.ink-os.theme-finder .window-controls button:nth-child(2){background:#d4e6cf;color:#7c9577}
+.ink-os.theme-finder .window-controls button:nth-child(3){background:#efc4ca;color:#bd8c93}
+.ink-os.theme-finder .window-controls button svg{width:10px;height:10px}
+.ink-os.theme-finder .window-navigation{background:#faf8f9;color:#b1a8af;border-bottom-color:#e7dfe4}
+.ink-os.theme-finder .window-body{background-color:#fffdfd;background-image:radial-gradient(#f1d9e222 .8px,transparent .8px);background-size:12px 12px}
+.ink-os.theme-finder .side-dock{background:#faf6f8e8;border-color:#e1d9de;box-shadow:none}
+.ink-os.theme-finder .desk-polaroid{border:5px solid #fff;box-shadow:0 5px 17px #aaa1a72b;border-radius:5px}
+.ink-os.theme-finder .retro-widget-bar{background:#f7f5f6;border-bottom:1px solid #e3dce1;color:#a79aa3}
+.ink-os.theme-finder .theme-swatch.finder>div{background:radial-gradient(#e8c1d0 1px,transparent 1px),#fff5fa;background-size:9px 9px}
+/* Graphite Dock: gray bevels, dithered desktop, a compact pinned dock. */
+.ink-os.theme-graphite .os-layout{background:#b7bab1;background-image:repeating-conic-gradient(#aeb1a8 0 25%,#d0d3c7 0 50%);background-size:4px 4px}
+.ink-os.theme-graphite .cozy-desktop{background:#d5d7cd!important;background-image:repeating-conic-gradient(#c6c9bd 0 25%,#d8dace 0 50%)!important;background-size:4px 4px!important}
+.ink-os.theme-graphite .ink-wallpaper-stripe,.ink-os.theme-graphite .ink-wallpaper-flower{display:none}
+.ink-os.theme-graphite .side-dock{display:none}
+.ink-os.theme-graphite .os-window{border:1px solid #494d44;border-radius:7px 7px 3px 3px;box-shadow:4px 4px 0 #5b60555c,0 10px 20px #30362b2b}
+.ink-os.theme-graphite .window-titlebar{background:linear-gradient(#f7f7f1,#bec2b6);border-bottom:1px solid #858b7e;box-shadow:inset 0 1px #fff;color:#454c3f}
+.ink-os.theme-graphite .window-controls button{background:linear-gradient(#fff,#c7cbbf);border:1px solid #737c69;border-radius:3px;color:#424a39;box-shadow:inset 1px 1px #fff}
+.ink-os.theme-graphite .window-navigation{background:#e2e4da;border-color:#9ba291;color:#65715a}
+.ink-os.theme-graphite .system-bar{background:linear-gradient(#f8f8f1,#d4d8c9);border-bottom:1px solid #747f68}
+.ink-os.theme-graphite .desk-shortcuts button>span:last-child{background:#e6e9dd;color:#464f3c;border-color:#aab49d}
+.ink-os.theme-graphite .desk-countdown,.ink-os.theme-graphite .desk-upcoming,.ink-os.theme-graphite .desk-comfort-jar,.ink-os.theme-graphite .desk-polaroid,.ink-os.theme-graphite .desk-sticky-note{background:#f0f1e8;border-color:#6b765f;box-shadow:3px 3px 0 #6e7a5e88}
+.ink-os.theme-graphite .theme-swatch.graphite>div{background:linear-gradient(#f7f7f0,#b9c0ad)}
+.ink-os.theme-graphite .pixel-cat-art{filter:grayscale(1)}
+.ink-os:is(.theme-finder,.theme-graphite) .taskbar-apps{display:none}
+.mac-style-dock{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;overflow:auto;scrollbar-width:none;padding:4px 9px;flex:1}
+.mac-style-dock>button{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;flex-shrink:0;padding:3px 3px 7px;min-width:39px}
+.ink-os .mac-style-dock .app-icon{width:36px;height:36px;border-radius:10px;border:1px solid #d4c4cf;box-shadow:inset 0 1px #fff9,0 2px 3px #a28f9a28;background:#f7e8f0;color:#a28799;transition:transform .15s}
+.mac-style-dock>button:hover .app-icon{transform:translateY(-3px)}
+.mac-style-dock>button>i{position:absolute;bottom:0;width:4px;height:4px;border-radius:50%;background:#9f8b98}
+.mac-style-dock>button.dock-selected>i{background:#6b5966}
+.mac-dock-label{position:fixed;bottom:54px;font:10px Nunito,sans-serif;padding:4px 7px;background:#fffafae8;border:1px solid #dacbd4;border-radius:5px;color:#8b7785;opacity:0;pointer-events:none;white-space:nowrap}
+.mac-style-dock>button:hover .mac-dock-label,.mac-style-dock>button:focus-visible .mac-dock-label{opacity:1}
+.ink-os:is(.theme-finder,.theme-graphite) .taskbar{height:57px;border:1px solid #d9d0d5;border-radius:15px 15px 0 0;background:#fff8;backdrop-filter:blur(12px);padding:0 9px;max-width:100%;gap:6px}
+.ink-os.theme-graphite .taskbar{border-color:#9da791;background:linear-gradient(#eff1e5d9,#c5cdb8d9)}
+.ink-os.theme-graphite .mac-style-dock .app-icon{background:linear-gradient(#fff,#d0d7c4);color:#4d5b3e;border-color:#9ba98b;box-shadow:inset 0 1px white,0 2px 2px #56654733;filter:grayscale(1)}
+.ink-os.theme-graphite .mac-style-dock>button>i{background:#58664a}
+.ink-os:is(.theme-finder,.theme-graphite) .taskbar .start-button>span,.ink-os:is(.theme-finder,.theme-graphite) .taskbar .start-button>svg{display:none}
+.ink-os:is(.theme-finder,.theme-graphite) .taskbar .taskbar-divider{display:none}
+.ink-os .theme-swatch.aero>div{background:linear-gradient(120deg,#f9dfe9,#dfaeca,#fff2fa)}
+.ink-os .theme-swatch.finder>div{background:radial-gradient(#e7c2d0 1px,transparent 1px),#fff8fc;background-size:10px 10px}
+.ink-os .theme-swatch.graphite>div{background:linear-gradient(#f6f7ee,#aeb9a0)}
+.ink-os .theme-swatch.aero i{background:#f6e5ee}.ink-os .theme-swatch.finder i{background:#e7d5de}.ink-os .theme-swatch.graphite i{background:#f0f2e9}
+/* The remembered theme is also used on the welcome/sign-in screens. */
+.love-screen.theme-aero{--login-ink:#8a647e;--login-paper:#fff7fb;background:radial-gradient(ellipse at 20% 10%,#fff4fa,#f4d4e4 65%,#e9dbea)}
+.love-screen.theme-finder{--login-ink:#92948d;--login-paper:#fffefd;background:#fff7fb;background-image:radial-gradient(#ebcbd7 1px,transparent 1px);background-size:18px 18px}
+.love-screen.theme-graphite{--login-ink:#46513d;--login-paper:#f3f4eb;background:#bdc4b2;background-image:repeating-conic-gradient(#abb59d 0 25%,#cbd3bf 0 50%);background-size:4px 4px}
+.love-screen:is(.theme-aero,.theme-finder) :is(.love-login-window,.love-welcome-card,.workspace-setup-card,.invite-page-card){border:1px solid #d2b5c7;border-radius:15px;background:var(--login-paper);box-shadow:0 12px 35px #ab82992e}
+.love-screen:is(.theme-aero,.theme-finder) .love-browser-chrome{background:linear-gradient(#fff9fc,#ecd7e3);border-color:#d4bccc;color:#ad8ca3}
+.love-screen.theme-aero .love-submit{border:1px solid #b1bd8e;border-radius:22px;background:linear-gradient(#f4fbdc,#cddd9f);color:#7c8a56;box-shadow:inset 0 1px white,0 2px 4px #a5ad7e25}
+.love-screen.theme-finder .love-submit{border:1px solid #d7becd;border-radius:9px;background:#f5e1ec;color:#af879f;box-shadow:0 2px 5px #b28a9f20}
+.love-screen.theme-graphite :is(.love-login-window,.love-welcome-card,.workspace-setup-card,.invite-page-card){box-shadow:4px 4px 0 #7a876b;border-color:#667657;background:var(--login-paper)}
+.love-screen.theme-graphite .love-browser-chrome{background:linear-gradient(#fbfcef,#c6cfb9);color:#657357}
+@media(max-width:759px){.ink-os:is(.theme-aero,.theme-finder) .cozy-desktop{border-radius:10px}.ink-os.theme-aero .os-window{border-radius:10px}.ink-os.theme-finder .os-window{border-radius:13px}.ink-os.theme-finder .window-controls button{width:20px;height:20px}.ink-os.theme-aero .window-controls button{width:26px;height:24px}.ink-os.theme-aero .window-controls button:last-child{width:34px}.ink-os:is(.theme-finder,.theme-graphite) .taskbar{padding:0 5px;gap:2px}.mac-style-dock{justify-content:flex-start;padding:3px 5px;gap:3px}.mac-style-dock>button{min-width:35px;padding:3px 2px 7px}.ink-os .mac-style-dock .app-icon{width:30px;height:30px;border-radius:8px}.ink-os .mac-style-dock .app-icon svg{width:20px;height:20px}.ink-os:is(.theme-finder,.theme-graphite) .taskbar-status>span{display:none!important}.ink-os:is(.theme-finder,.theme-graphite) .taskbar-status{gap:2px;margin-left:0}.ink-os:is(.theme-finder,.theme-graphite) .show-desktop-button{padding:5px 3px}.mac-dock-label{display:none}}
+@media(prefers-reduced-motion:reduce){.mac-style-dock .app-icon{transition:none!important}}.no-motion .mac-style-dock .app-icon{transition:none!important}
+
+.ink-os:is(.theme-finder,.theme-graphite) .os-layout{height:calc(100dvh - 101px)}
+/* Each palette stays recognizable before it is selected. */
+.ink-os .theme-swatch.aero i:nth-child(1){background:#f3bad6}.ink-os .theme-swatch.aero i:nth-child(2){background:linear-gradient(#fff,#e4b8d1)}.ink-os .theme-swatch.aero i:nth-child(3){background:#cce58d}
+.ink-os .theme-swatch.finder i:nth-child(1){background:#fff}.ink-os .theme-swatch.finder i:nth-child(2){background:#f6e4ed}.ink-os .theme-swatch.finder i:nth-child(3){background:#d2b8c5}
+.ink-os .theme-swatch.graphite i:nth-child(1){background:#ededed}.ink-os .theme-swatch.graphite i:nth-child(2){background:#bcbcbc}.ink-os .theme-swatch.graphite i:nth-child(3){background:#505050}
+.ink-os .theme-swatch.midnight i:nth-child(1){background:#151321}.ink-os .theme-swatch.midnight i:nth-child(2){background:#383143}.ink-os .theme-swatch.midnight i:nth-child(3){background:#efedf5}
+.ink-os .theme-swatch.macintosh i:nth-child(1){background:#f9f9f3}.ink-os .theme-swatch.macintosh i:nth-child(2){background:#aaa}.ink-os .theme-swatch.macintosh i:nth-child(3){background:#333}
+.ink-os .theme-swatch.pinkgreen i:nth-child(1){background:#eab5c9}.ink-os .theme-swatch.pinkgreen i:nth-child(2){background:#fff9ed}.ink-os .theme-swatch.pinkgreen i:nth-child(3){background:#bdd3b8}
+.ink-os.theme-graphite .desk-intro h1 em{color:#707070}
+.ink-os:is(.theme-aero,.theme-finder) .taskbar-apps>button.active{color:#72566b;background:#f3d8e3}
