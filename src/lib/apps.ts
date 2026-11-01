@@ -1,4 +1,4 @@
-import { House, CalendarDays, Star, MapPinned, BookHeart, Wallet, Images, Shirt, Heart, StickyNote, Gift, Settings, Trash2 } from 'lucide-react';
+import { House, CalendarDays, Star, MapPinned, BookHeart, Wallet, Images, Shirt, Heart, StickyNote, Gift, Settings, Trash2, Blocks } from 'lucide-react';
 export const apps = [
  {id:'home',name:'Our Little Corner',short:'Home',icon:House,color:'pink',caption:'A little overview of us'},
  {id:'calendar',name:'Our Calendar',short:'Calendar',icon:CalendarDays,color:'pink',caption:'Make a little time for us'},
@@ -12,6 +12,7 @@ export const apps = [
  {id:'notes',name:'Little Notes',short:'Notes',icon:StickyNote,color:'yellow',caption:'Small thoughts, safely tucked away'},
  {id:'wishlist',name:'Our Wishlist',short:'Wishlist',icon:Gift,color:'green',caption:'Someday, with you'},
  {id:'together',name:'Our Together Space',short:'Together',icon:Heart,color:'pink',caption:'A little closer, every day'},
+ {id:'pixelworld',name:'Gio’s Little World',short:'Pixel World',icon:Blocks,color:'green',caption:'Mine, build and find little hearts'},
  {id:'settings',name:'Make It Ours',short:'Settings',icon:Settings,color:'green',caption:'Your own little corner'},
  {id:'trash',name:'Trash',short:'Trash',icon:Trash2,color:'cream',caption:'A second chance for little things'},
 ] as const;

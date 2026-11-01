@@ -2,7 +2,8 @@
 
 A shared React + TypeScript desktop for plans, memories and little everyday moments. The interface uses cream panels, dark computer-window outlines, offset shadows and pink-and-green accents. Windows, forms, dialogs, galleries, calendar, notebook and login screens share the same visual style.
 
-- **Desktop and appearance:** personal photo, shared note, next-date countdown, compact agenda, hourly comfort game and movable pixel cat. Choose **Pink & Green** in Settings, with six typography options and self-hosted fonts. [Desktop guide](docs/cozy-desktop.md).
+- **Desktop and appearance:** personal photo, shared note, next-date countdown, compact agenda, hourly comfort game and movable Smiski companion. Choose a retro theme in Settings, with six typography options and self-hosted fonts. [Desktop guide](docs/cozy-desktop.md).
+- **Gio’s Little World:** a pixel building game with collectable blocks, three hearts to find, keyboard/touch controls and progress saved on this device. Open **Apps → Pixel World** or ask Smiski.
 - **Together Space:** collaborative plans, checklists, playlists, maps, moods, timed surprises and memory recaps. [Setup and feature guide](docs/together-setup.md). Shared Together features require migration 005; scheduled reminders have a separate deployment step.
 - **Optional visit sharing:** Settings shows partner website visits and real sign-in times only when that person opts in. [Setup and behavior](docs/visit-sharing.md). Requires migration 006, with sharing off by default.
 

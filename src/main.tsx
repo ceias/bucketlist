@@ -13,3 +13,5 @@ import './styles/ink-os.css';
 import './styles/monochrome-themes.css';
 import './styles/desktop-theme-pack.css';
 createRoot(document.getElementById('root')!).render(<StrictMode><App/></StrictMode>);
+
+import './styles/pixel-world.css';
