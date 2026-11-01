@@ -9,4 +9,5 @@ import './styles/desktop.css';
 import './styles/happy-desk.css';
 import './styles/scrapbook-desk.css';
 import './styles/retro-desktop.css';
+import './styles/ink-os.css';
 createRoot(document.getElementById('root')!).render(<StrictMode><App/></StrictMode>);

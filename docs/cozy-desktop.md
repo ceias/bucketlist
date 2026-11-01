@@ -1,4 +1,4 @@
-# Our cozy desktop and comfort jar
+# Pink-and-green desktop and comfort jar
 
 This update needs **no new Supabase SQL, secrets, schedules or function deployment**. Wait for Vercel's frontend deployment, then refresh. Local development: pull main, run `npm install`, then `npm run dev`.
 
@@ -13,10 +13,10 @@ This update needs **no new Supabase SQL, secrets, schedules or function deployme
 
 The responsive layout and input interactions are browser-tested at desktop and phone widths. Actual iPhone Safari and Samsung browser checks still need to be performed on your devices. A pixel cat was implemented as the guide; personalized pixel portraits are not part of this update.
 
-## Pastel desktop and typography
+## Appearance and typography
 
-The desktop now takes inspiration from pastel custom computer desktops: pink gingham, a striped candy-heart wallpaper, framed memory/calendar-style widgets and sticker-like shortcuts. Your photo, note, countdown, jar and cat continue to work normally.
+The site uses a retro personal-computer style: dark outlines, cream panels, hard offset shadows, diagonal pink-and-green wallpaper and custom outlined desktop icons. The same treatment applies to app windows, controls, dialogs, login, calendar, gallery, notebook and Together Space. Your photo, note, countdown, jar and cat continue to work normally. Choose **Settings → Pink & Green** for the reference palette; this is the default for new browsers. Existing saved theme choices are retained, with the new outlined interface applied throughout.
 
-Open **Settings → Typography** to choose **Classic stationery**, **Simple & clear**, **Soft round (Nunito)**, **Bubblegum (Fredoka)**, **Notebook (Patrick Hand)** or **Pixel diary (VT323)**. The six preview cards apply the choice immediately, and it persists on this browser/device. Existing saved font preferences are retained; new browsers start with Soft round. Pixel and handwritten styles use readable text for controls and longer passages. The wallpaper wordmark remains a consistent display treatment.
+Open **Settings → Typography** to choose **Classic stationery**, **Simple & clear**, **Soft round (Nunito)**, **Bubblegum (Fredoka)**, **Notebook (Patrick Hand)** or **Pixel diary (VT323)**. The six preview cards apply the choice immediately, and it persists on this browser/device. Existing saved font preferences are retained; new browsers start with Soft round. Pixel and handwritten styles use readable text for controls and longer passages. Some window/control labels use a fixed readable face while app headings keep your selected typography.
 
 The four additional fonts are bundled locally, with their Open Font Licenses in `public/fonts`. No Google Fonts or other font-service request is needed when visiting the site. No Supabase changes are needed.

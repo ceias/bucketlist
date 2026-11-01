@@ -1,22 +1,12 @@
-# Shared website activity
+# Gio & Bri OS
 
-**Settings → Website visits & sign-ins** shows recent partner visits and actual sign-in times when that person opts in. Run only migration 006 once to activate it. Sharing defaults off and can be disabled independently by either partner. [Setup and behavior](docs/visit-sharing.md). No email provider, new secrets or scheduled worker is needed.
+A shared React + TypeScript desktop for plans, memories and little everyday moments. The interface uses cream panels, dark computer-window outlines, offset shadows and pink-and-green accents. Windows, forms, dialogs, galleries, calendar, notebook and login screens share the same visual style.
 
-# Pastel desktop and typography
+- **Desktop and appearance:** personal photo, shared note, next-date countdown, compact agenda, hourly comfort game and movable pixel cat. Choose **Pink & Green** in Settings, with six typography options and self-hosted fonts. [Desktop guide](docs/cozy-desktop.md).
+- **Together Space:** collaborative plans, checklists, playlists, maps, moods, timed surprises and memory recaps. [Setup and feature guide](docs/together-setup.md). Shared Together features require migration 005; scheduled reminders have a separate deployment step.
+- **Optional visit sharing:** Settings shows partner website visits and real sign-in times only when that person opts in. [Setup and behavior](docs/visit-sharing.md). Requires migration 006, with sharing off by default.
 
-The desktop now has a candy-heart wallpaper, gingham background, pastel widget frames and larger sticker-like app icons. **Settings → Typography** offers six styles with live previews, including four self-hosted fonts. See [the desktop guide](docs/cozy-desktop.md). Existing font preferences are retained; no new Supabase setup is required.
-
-# Cozy desktop and comfort jar
-
-A shared-memory Polaroid, sticky note, compact agenda, countdown, comfort claw game and draggable pixel cat now make up the desktop. Open **Desktop** in the taskbar or **Joy jar** in the top bar. [Usage guide](docs/cozy-desktop.md). No new SQL, secrets or worker deployment is needed for this update.
-
-# Together Space release
-
-All approved features except home-screen installation (18) are implemented. Start with [the complete setup and feature guide](docs/together-setup.md): run only migration 005 for your existing project, then deploy/schedule the separate reminder function if you want scheduled delivery. Existing workspace merges, photos, credentials and agenda-email schedules stay intact.
-
-# Gio & Me OS
-
-A little OS for a bigger us. An initial, working React + TypeScript desktop for The Gio & Me Project, using the supplied asset kit’s pastel stationery style.
+The visual redesign requires no new SQL, secrets or function deployment. Existing saved theme/font choices and workspace data are preserved.
 
 ## Run locally
 
