@@ -8,3 +8,5 @@
 
 /* Keep the reward readable on laptop-height screens instead of hiding it below the machine. */
 @media(min-width:760px) and (max-height:900px){.comfort-arcade{width:min(660px,calc(100vw - 24px))}.arcade-intro{padding:14px 18px 12px}.arcade-intro h1{font-size:27px;margin:7px 0}.arcade-intro .eyebrow{font-size:6px}.claw-machine>svg{max-height:28dvh}.claw-machine{margin:0 20px;padding:9px 11px 4px}.claw-controls{padding:12px 22px}.arcade-result{min-height:65px;margin:0 22px;padding:13px}.arcade-result h2{font-size:19px;line-height:1.4}.arcade-result>.prize-cat{width:55px;height:55px}.arcade-after{padding-top:12px}.arcade-collection{padding-top:10px;gap:10px}.arcade-collection>span{width:33px}.arcade-collection svg{height:33px}.arcade-footnote{padding-bottom:12px}}
+
+.arcade-hourly-refresh{text-align:center;font-size:11px;color:#a36c85;padding:9px 16px 2px;line-height:1.7}.arcade-hourly-refresh time{font-weight:600;white-space:nowrap}
