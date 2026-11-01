@@ -1,7 +1,8 @@
+import { MemoryPhoto as Photo } from '../components/MemoryPhoto';
 import { Creator, PhotoSocial } from '../together/components';
 import { GalleryExtras } from '../together/GalleryExtras';
 import { createId } from '../lib/id';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Camera, Upload, Heart, Trash2, X, Download, FolderHeart, Images, Search, Pencil, Check, StickyNote, CalendarDays, LoaderCircle } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { useData, emptyDraft, type Item } from '../stores/data';
@@ -9,17 +10,6 @@ import { supabase } from '../lib/supabase';
 import { Modal } from '../components/Modal';
 import { photoFileName, renamedPhoto } from '../lib/photos';
 const albums = ['All memories','Our First Anniversary','Photobooth Memories','Food Crawls','Matching Outfits','Adventures','Little Moments'];
-export function Photo({ item, onClick }: { item: Item; onClick: () => void }) {
-  const [url,setUrl] = useState(item.data.localUrl || '');
-  const [failed,setFailed] = useState(false);
-  useEffect(() => {
-    let live = true; setFailed(false);
-    if (item.data.path && supabase) supabase.storage.from('memories').createSignedUrl(item.data.path,3600).then(({data,error}) => { if(live) { if(data)setUrl(data.signedUrl);if(error)setFailed(true); } });
-    else setUrl(item.data.localUrl || '');
-    return () => { live = false; };
-  }, [item.data.path,item.data.localUrl]);
-  return <button className="photo-image" aria-label={`View ${item.title}`} onClick={onClick}>{url && !failed ? <img src={url} alt={item.title} onError={() => setFailed(true)}/> : <span className="photo-unavailable"><Camera size={30}/>{failed && <small>Photo unavailable. Try reopening.</small>}</span>}</button>;
-}
 function PhotoDetails({ item, onClose }: { item: Item; onClose: () => void }) {
   const save = useData(s => s.save);
   const [name,setName] = useState(photoFileName(item));

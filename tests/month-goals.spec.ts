@@ -8,7 +8,7 @@ test('month headings stay flexible while an explicit first-day date remains sche
   await dialog.getByLabel('Agendas to import').fill(`${label}\n- Buy matching clothes this month\n${month}-01 | An explicitly dated lunch`);
   await expect(dialog.getByText('Any day in '+format(target,'MMMM')+' · Monthly goals')).toBeVisible();
   await dialog.getByRole('button',{name:'Import 2 goals',exact:true}).click();
-  await expect(page.getByText(label+' · any day',{exact:true})).toBeVisible();
+  await expect(page.getByRole('region',{name:'Bucket List',exact:true}).getByText(label+' · any day',{exact:true})).toBeVisible();
   await page.getByRole('button',{name:'Agenda',exact:true}).click();const widget=page.locator('.agenda-popover');
   await widget.getByRole('button',{name:'Next widget month',exact:true}).click();
   await widget.getByRole('button',{name:format(new Date(month+'-01T12:00:00'),'MMMM d, yyyy')+', 1 agenda items',exact:true}).click();
@@ -33,11 +33,11 @@ test('old imports can be corrected selectively without changing intentionally da
   const dialog=page.getByRole('dialog',{name:'Correct month-only goals'});
   await expect(dialog.getByRole('button',{name:'Make 0 month-only',exact:true})).toBeDisabled();
   await dialog.getByLabel('An old monthly plan',{exact:true}).check();await dialog.getByRole('button',{name:'Make 1 month-only',exact:true}).click();
-  await expect(dialog).toHaveCount(0);await expect(page.getByText('November 2026 · any day',{exact:true})).toHaveCount(1);
-  await expect(page.getByText('Nov 1, 2026',{exact:true})).toHaveCount(1);
-  await page.reload();await expect(page.getByText('November 2026 · any day',{exact:true})).toHaveCount(1);
+  await expect(dialog).toHaveCount(0);await expect(page.getByRole('region',{name:'Bucket List',exact:true}).getByText('November 2026 · any day',{exact:true})).toHaveCount(1);
+  await expect(page.getByRole('region',{name:'Bucket List',exact:true}).getByText('Nov 1, 2026',{exact:true})).toHaveCount(1);
+  await page.reload();await expect(page.getByRole('region',{name:'Bucket List',exact:true}).getByText('November 2026 · any day',{exact:true})).toHaveCount(1);
   await page.getByRole('button',{name:'Edit An old monthly plan',exact:true}).click();
   await expect(page.getByRole('dialog',{name:'Edit moment'}).getByLabel('Goal month',{exact:true})).toHaveValue('2026-11');
   await page.getByRole('button',{name:'Specific day',exact:true}).click();await page.getByLabel('Date',{exact:true}).fill('2026-11-13');
-  await page.getByRole('button',{name:'Save moment',exact:true}).click();await expect(page.getByText('Nov 13, 2026',{exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Save moment',exact:true}).click();await expect(page.getByRole('region',{name:'Bucket List',exact:true}).getByText('Nov 13, 2026',{exact:true})).toBeVisible();
 });

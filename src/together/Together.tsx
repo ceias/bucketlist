@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { useTogether } from './store';
 import { useData,emptyDraft,money } from '../stores/data';
 import { useWindows } from '../stores/windows';
-import { Photo } from '../apps/Gallery';
+import { MemoryPhoto as Photo } from '../components/MemoryPhoto';
 import { Modal } from '../components/Modal';
 import { createId } from '../lib/id';
 import { coordinates,dueNext,latestTask,monthlyMemories,pickIdea,prompts,safeLink,type Entry,type EntryKind } from './model';

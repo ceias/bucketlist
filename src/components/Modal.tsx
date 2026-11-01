@@ -14,6 +14,8 @@ export function Modal({ children, label, className = 'modal-backdrop', onClose, 
     const controls = () => [...node.querySelectorAll<HTMLElement>('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex="0"]')].filter(el => el.getClientRects().length > 0);
     if (!node.contains(document.activeElement)) (node.querySelector<HTMLElement>('[autofocus],[data-autofocus]') || controls()[0] || node).focus();
     const keys = (event: KeyboardEvent) => {
+      const dialogs=[...document.querySelectorAll('[role="dialog"][aria-modal="true"]')];
+      if(dialogs.at(-1)!==node)return;
       if (event.key === 'Escape') { event.stopPropagation(); if (!blocked.current) close.current(); }
       if (event.key === 'Tab') {
         const elements = controls(); const first = elements[0]; const last = elements.at(-1);
@@ -22,8 +24,8 @@ export function Modal({ children, label, className = 'modal-backdrop', onClose, 
         else if (!event.shiftKey && (document.activeElement === last || !node.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
       }
     };
-    node.addEventListener('keydown', keys);
-    return () => { node.removeEventListener('keydown', keys); if (previous?.isConnected) previous.focus(); };
+    document.addEventListener('keydown', keys);
+    return () => { document.removeEventListener('keydown', keys); if (previous?.isConnected) previous.focus(); };
   }, []);
   return createPortal(<div ref={ref} className={className} role="dialog" aria-modal="true" aria-label={label} aria-describedby={descriptionId} tabIndex={-1} onPointerDown={event => event.stopPropagation()}>{children}</div>, document.querySelector('.os') || document.body);
 }

@@ -1,3 +1,7 @@
+# Cozy desktop and comfort jar
+
+A shared-memory Polaroid, sticky note, compact agenda, countdown, comfort claw game and draggable pixel cat now make up the desktop. Open **Desktop** in the taskbar or **Joy jar** in the top bar. [Usage guide](docs/cozy-desktop.md). No new SQL, secrets or worker deployment is needed for this update.
+
 # Together Space release
 
 All approved features except home-screen installation (18) are implemented. Start with [the complete setup and feature guide](docs/together-setup.md): run only migration 005 for your existing project, then deploy/schedule the separate reminder function if you want scheduled delivery. Existing workspace merges, photos, credentials and agenda-email schedules stay intact.

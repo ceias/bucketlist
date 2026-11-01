@@ -1,7 +1,7 @@
 import { useEffect,useState } from 'react';
 import { Download,Play,Pause,ChevronLeft,ChevronRight,X } from 'lucide-react';
 import { Modal } from '../components/Modal';
-import { Photo } from '../apps/Gallery';
+import { MemoryPhoto as Photo } from '../components/MemoryPhoto';
 import { supabase } from '../lib/supabase';
 import type { Item } from '../stores/data';
 import { photoFileName } from '../lib/photos';
