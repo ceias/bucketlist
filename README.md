@@ -1,3 +1,7 @@
+# Shared website activity
+
+**Settings → Website visits & sign-ins** shows recent partner visits and actual sign-in times when that person opts in. Run only migration 006 once to activate it. Sharing defaults off and can be disabled independently by either partner. [Setup and behavior](docs/visit-sharing.md). No email provider, new secrets or scheduled worker is needed.
+
 # Pastel desktop and typography
 
 The desktop now has a candy-heart wallpaper, gingham background, pastel widget frames and larger sticker-like app icons. **Settings → Typography** offers six styles with live previews, including four self-hosted fonts. See [the desktop guide](docs/cozy-desktop.md). Existing font preferences are retained; no new Supabase setup is required.

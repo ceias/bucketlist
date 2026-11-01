@@ -11,7 +11,7 @@ async function scalar(sql,args=[]){return (await db.query(sql,args)).rows[0]?.va
 async function rpc(sql,args=[]){return (await db.query(sql,args)).rows[0]}
 try{
 await db.exec(`create role anon;create role authenticated;create role service_role bypassrls;create schema auth;create schema storage;create schema extensions;
-create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz,raw_user_meta_data jsonb default '{}');
+create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz,last_sign_in_at timestamptz,raw_user_meta_data jsonb default '{}');
 create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
 grant usage on schema public,auth,storage to authenticated,service_role;
 create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);
@@ -19,7 +19,7 @@ create table storage.objects(id uuid default gen_random_uuid(),bucket_id text,na
 create function storage.foldername(text) returns text[] language sql immutable as $$select (string_to_array($1,'/'))[1:array_length(string_to_array($1,'/'),1)-1]$$;
 create function extensions.gen_random_bytes(integer) returns bytea language sql as $$select decode(repeat('ab',$1),'hex')$$;
 create function extensions.digest(text,text) returns bytea language sql immutable as $$select decode(md5($1),'hex')$$;`);
-for(const name of ['202610310001_initial_workspace.sql','202611010002_partner_welcome_and_notifications.sql','202611010003_agenda_email_delivery.sql','202611010004_own_agenda_confirmations.sql','202611010005_together_space.sql']){
+for(const name of ['202610310001_initial_workspace.sql','202611010002_partner_welcome_and_notifications.sql','202611010003_agenda_email_delivery.sql','202611010004_own_agenda_confirmations.sql','202611010005_together_space.sql','202611010006_shared_visit_activity.sql']){
  let sql=await readFile(new URL('../../supabase/migrations/'+name,import.meta.url),'utf8');
  sql=sql.replace('create extension if not exists pgcrypto with schema extensions;','');
  await db.exec(sql);console.log('Applied',name);
@@ -72,5 +72,15 @@ const after=await scalar('select due_at::text as value from couple_reminders whe
 assert.equal(new Date(after)-new Date(before),172800000);
 await rpc('select set_couple_reminders(false)');assert.equal(await scalar('select status as value from couple_reminders where id=$1',[secondReminder]),'skipped');
 await as(C);assert.equal(await scalar('select count(*)::int as value from couple_entries'),0);await assert.rejects(rpc('select get_couple_space($1)',[space]),/access denied/);await assert.rejects(rpc('select claim_couple_reminder_emails()'),/permission denied/);
+await as(A);let visits=await scalar('select get_shared_visit_activity() as value');assert.equal(visits.members.length,2);assert.equal(visits.members.every(m=>!m.sharing&&!m.last_visit_at&&!m.last_sign_in_at&&m.events.length===0),true);
+await rpc('select record_my_website_visit()');await admin();assert.equal(await scalar('select count(*)::int as value from partner_visit_events'),0);
+await as(B);await rpc('select set_my_visit_sharing(true)');await rpc('select record_my_website_visit()');await rpc('select record_my_website_visit()');
+await admin();await db.query('update auth.users set last_sign_in_at=now() where id=$1',[B]);await as(B);await rpc('select record_my_website_visit()');
+await as(A);visits=await scalar('select get_shared_visit_activity() as value');let partner=visits.members.find(m=>m.user_id===B);assert.equal(partner.sharing,true);assert.ok(partner.last_visit_at);assert.ok(partner.last_sign_in_at);assert.equal(partner.events.filter(e=>e.kind==='visit').length,1);assert.equal(partner.events.filter(e=>e.kind==='sign_in').length,1);
+await assert.rejects(db.query('select * from partner_visit_events'),/permission denied/);
+await as(C);await assert.rejects(rpc('select get_shared_visit_activity()'),/Join a workspace/);
+await as(B);await rpc('select set_my_visit_sharing(false)');await as(A);visits=await scalar('select get_shared_visit_activity() as value');partner=visits.members.find(m=>m.user_id===B);assert.equal(partner.sharing,false);assert.equal(partner.last_visit_at,null);assert.equal(partner.last_sign_in_at,null);assert.deepEqual(partner.events,[]);
+await admin();assert.equal(await scalar('select count(*)::int as value from partner_visit_events where user_id=$1',[B]),0);
+console.log('PASS: visit sharing defaults off, consent, sign-in source, deduplicated visits, outsider/table protection and immediate opt-out removal.');
 console.log('PASS: migrations, partner photo update, sealed letters, private answers, shared comments, hearts, roster, reminder deduplication/delivery and outsider access.');
 }finally{await db.close()}

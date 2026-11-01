@@ -20,6 +20,7 @@ import { AuthGate } from './auth/AuthGate';
 import { useNotices } from './stores/notifications';
 import { PartnerNotificationPanel, PartnerNotificationToast, usePartnerNotifications } from './components/PartnerNotifications';
 import { SyncStatus, useTogetherConnection } from './together/components';
+import { useVisitSharing } from './together/VisitActivity';
 import { useTogether } from './together/store';
 import { CozyDesktop,ComfortArcade } from './desktop/CozyDesktop';
 import { CatGuide } from './desktop/CatGuide';
@@ -28,7 +29,7 @@ import { supabase } from './lib/supabase';
 const Anniversary=lazy(()=>import('./apps/Anniversary').then(m=>({default:m.Anniversary})));
 const Trash=lazy(()=>import('./apps/Trash').then(m=>({default:m.Trash})));
 function AppContent({id}:{id:AppId}){switch(id){case 'together':return <Together/>;case 'home':return <Home/>;case 'calendar':return <CalendarApp/>;case 'finances':return <Finances/>;case 'journal':return <Journal/>;case 'gallery':return <Gallery/>;case 'settings':return <Settings/>;case 'anniversary':return <Anniversary/>;case 'trash':return <Trash/>;default:return <Collections kind={id}/>}}
-function Desktop(){useTogetherConnection();const extraUnread=useTogether(s=>s.inbox.filter(n=>!n.read_at).length);const session=useAuth(s=>s.session);usePartnerNotifications();const unread=useNotices(s=>s.notices.filter(n=>!n.read_at).length)+extraUnread;const workspace=useData(s=>s.workspace);
+function Desktop(){useTogetherConnection();useVisitSharing();const extraUnread=useTogether(s=>s.inbox.filter(n=>!n.read_at).length);const session=useAuth(s=>s.session);usePartnerNotifications();const unread=useNotices(s=>s.notices.filter(n=>!n.read_at).length)+extraUnread;const workspace=useData(s=>s.workspace);
  useEffect(()=>{if(!workspace||!supabase||!session)return;const channel=supabase.channel('workspace-'+workspace).on('postgres_changes',{event:'*',schema:'public',table:'records',filter:'workspace_id=eq.'+workspace},()=>{void useData.getState().connect(workspace,session.user.id).catch(()=>{})}).subscribe();return()=>{void supabase!.removeChannel(channel)}},[workspace,session?.user.id]);
  const {windows,open,update,top}=useWindows();const {error,clearError,mode,items}=useData();const preferences=usePreferences();const [now,setNow]=useState(new Date());const [menu,setMenu]=useState(false);const [search,setSearch]=useState('');const [notifications,setNotifications]=useState(false);const [agendaOpen,setAgendaOpen]=useState(false);const [comfortOpen,setComfortOpen]=useState(false);const [params,setParams]=useSearchParams();
  useEffect(()=>{const timer=setInterval(()=>setNow(new Date()),1000);const id=params.get('app');if(id==='desktop')windows.forEach(w=>update(w.id,{minimized:true}));else if(id&&apps.some(a=>a.id===id))open(id as AppId);else if(!windows.length)open('home');return()=>clearInterval(timer)},[]);
