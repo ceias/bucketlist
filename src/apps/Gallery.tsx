@@ -10,7 +10,7 @@ import { supabase } from '../lib/supabase';
 import { Modal } from '../components/Modal';
 import { photoFileName, renamedPhoto } from '../lib/photos';
 const albums = ['All memories','Our First Anniversary','Photobooth Memories','Food Crawls','Matching Outfits','Adventures','Little Moments'];
-function PhotoDetails({ item, onClose }: { item: Item; onClose: () => void }) {
+export function PhotoDetails({ item, onClose }: { item: Item; onClose: () => void }) {
   const save = useData(s => s.save);
   const [name,setName] = useState(photoFileName(item));
   const [notes,setNotes] = useState(item.body);
