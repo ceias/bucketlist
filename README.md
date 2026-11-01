@@ -1,3 +1,7 @@
+# Pastel desktop and typography
+
+The desktop now has a candy-heart wallpaper, gingham background, pastel widget frames and larger sticker-like app icons. **Settings → Typography** offers six styles with live previews, including four self-hosted fonts. See [the desktop guide](docs/cozy-desktop.md). Existing font preferences are retained; no new Supabase setup is required.
+
 # Cozy desktop and comfort jar
 
 A shared-memory Polaroid, sticky note, compact agenda, countdown, comfort claw game and draggable pixel cat now make up the desktop. Open **Desktop** in the taskbar or **Joy jar** in the top bar. [Usage guide](docs/cozy-desktop.md). No new SQL, secrets or worker deployment is needed for this update.

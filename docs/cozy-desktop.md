@@ -12,3 +12,11 @@ This update needs **no new Supabase SQL, secrets, schedules or function deployme
 - Motion preferences are respected. Game controls remain operable with reduced motion. The game may be closed during an animation; timers are cleaned up. Escape closes the active modal even if an animated control temporarily lost focus.
 
 The responsive layout and input interactions are browser-tested at desktop and phone widths. Actual iPhone Safari and Samsung browser checks still need to be performed on your devices. A pixel cat was implemented as the guide; personalized pixel portraits are not part of this update.
+
+## Pastel desktop and typography
+
+The desktop now takes inspiration from pastel custom computer desktops: pink gingham, a striped candy-heart wallpaper, framed memory/calendar-style widgets and sticker-like shortcuts. Your photo, note, countdown, jar and cat continue to work normally.
+
+Open **Settings → Typography** to choose **Classic stationery**, **Simple & clear**, **Soft round (Nunito)**, **Bubblegum (Fredoka)**, **Notebook (Patrick Hand)** or **Pixel diary (VT323)**. The six preview cards apply the choice immediately, and it persists on this browser/device. Existing saved font preferences are retained; new browsers start with Soft round. Pixel and handwritten styles use readable text for controls and longer passages. The wallpaper wordmark remains a consistent display treatment.
+
+The four additional fonts are bundled locally, with their Open Font Licenses in `public/fonts`. No Google Fonts or other font-service request is needed when visiting the site. No Supabase changes are needed.
