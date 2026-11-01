@@ -7,4 +7,5 @@ import './styles/love.css';
 import './styles/together.css';
 import './styles/desktop.css';
 import './styles/happy-desk.css';
+import './styles/scrapbook-desk.css';
 createRoot(document.getElementById('root')!).render(<StrictMode><App/></StrictMode>);
